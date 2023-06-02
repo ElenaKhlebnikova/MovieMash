@@ -7,9 +7,9 @@ const options = {
   },
 };
 
-const fetchMovies = async (value) => {
+const fetchMulti = async (value) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${value.queryKey}&include_adult=fasle&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/multi?query=${value.queryKey}&include_adult=fasle&language=en-US&page=1`,
     options
   );
   return response.json();
@@ -24,13 +24,14 @@ const fetchGenres = async () => {
   return response.json();
 };
 
-const fetchOneMovie = async (id) => {
+const fetchOneMovie = async ({ queryKey }) => {
+  console.log(queryKey);
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id.queryKey}?language=en-US`,
+    `https://api.themoviedb.org/3/${queryKey[1]}/${queryKey[0]}?language=en-US`,
     options
   );
 
   return response.json();
 };
 
-export { fetchMovies, fetchGenres, fetchOneMovie };
+export { fetchMulti, fetchGenres, fetchOneMovie };

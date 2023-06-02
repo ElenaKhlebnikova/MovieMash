@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import Genres from "../../components/genres";
 import { useNavigate } from "react-router-dom";
 
-function MovieSeriesPage() {
+function MoviePage() {
   const { id } = useParams();
   const { data } = useQuery({
-    queryKey: [id],
+    queryKey: [id, "movie"],
     queryFn: fetchOneMovie,
   });
   const navigate = useNavigate();
@@ -134,4 +134,4 @@ function MovieSeriesPage() {
   );
 }
 
-export default MovieSeriesPage;
+export default MoviePage;

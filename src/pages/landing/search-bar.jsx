@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchMovies } from "../../api";
+import { fetchMulti } from "../../api";
 import { useQuery } from "@tanstack/react-query";
 import SearchBarResults from "./search-bar-results";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ function SearchBar() {
   const [value, setValue] = useState("");
   const { data, refetch } = useQuery({
     queryKey: [value],
-    queryFn: fetchMovies,
+    queryFn: fetchMulti,
   });
 
   return (

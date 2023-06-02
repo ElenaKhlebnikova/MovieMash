@@ -11,7 +11,7 @@ function MovieItem({ item }) {
       <h3 className="font-bold text-2xl my-5">{item.title || item.name}</h3>
       <div className="grid grid-cols-2">
         <div>
-          <Link to={`/${item.id}`}>
+          <Link to={`/${item.media_type}/${item.id}`}>
             <img
               className="h-56"
               src={`https://image.tmdb.org/t/p/original/` + item.poster_path}
@@ -25,7 +25,7 @@ function MovieItem({ item }) {
             })}
           </div>
           <div className="text-xl font-semibold ">
-            <Link to={`/${item.id}`}>
+            <Link to={`/${item.media_type}/${item.id}`}>
               <button className="underline hover:cursor-pointer hover:text-slate-300">
                 Show more
               </button>

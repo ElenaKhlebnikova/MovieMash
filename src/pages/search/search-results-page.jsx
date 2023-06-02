@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { fetchMovies } from "../../api";
+import { fetchMulti } from "../../api";
 import MovieItem from "./movie-item";
 function SearchResultsPage() {
   const { value } = useParams();
 
   const { data } = useQuery({
     queryKey: [value],
-    queryFn: fetchMovies,
+    queryFn: fetchMulti,
   });
 
   return (

@@ -2,8 +2,10 @@ import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Landing from "./pages/landing/landing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MovieSeriesPage from "./pages/movie-series-page/movie-series-page";
+
 import SearchResultsPage from "./pages/search/search-results-page";
+
+import MiddlePage from "./pages/movie-series-page/middle-page";
 
 function App() {
   const queryClient = new QueryClient();
@@ -14,8 +16,8 @@ function App() {
       element: <Landing />,
     },
     {
-      path: "/:id",
-      element: <MovieSeriesPage />,
+      path: "/:media_type/:id",
+      element: <MiddlePage />,
     },
     {
       path: "/search/:value",
