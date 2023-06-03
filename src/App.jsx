@@ -4,8 +4,8 @@ import Landing from "./pages/landing/landing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import SearchResultsPage from "./pages/search/search-results-page";
-
-import MiddlePage from "./pages/movie-series-page/middle-page";
+import MoviePage from "./pages/movie-series-page/movie-page";
+import SeriesPage from "./pages/movie-series-page/series-page";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,9 +15,15 @@ function App() {
       path: "/",
       element: <Landing />,
     },
+    // This probably could work as I don't see you needed to dynamically set the media_type
+    // with this solution, you don't need the middle page
     {
-      path: "/:media_type/:id",
-      element: <MiddlePage />,
+      path: "/movie/:id",
+      element: <MoviePage />,
+    },
+    {
+      path: "/tv/:id",
+      element: <SeriesPage />,
     },
     {
       path: "/search/:value",
@@ -26,9 +32,8 @@ function App() {
   ]);
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router}>
-        <Landing />
-      </RouterProvider>
+      {/* This can be changed like this, still works fine, I tested it locally */}
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }
