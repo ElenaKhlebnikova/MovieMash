@@ -1,5 +1,5 @@
 import Genres from "../../components/genres";
-import useGenres from "../../hooks/useGenres";
+import useGenres from "../../hooks/use-genres";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 

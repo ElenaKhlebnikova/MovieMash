@@ -89,11 +89,7 @@ function MoviePage() {
                 <p
                   className={`text-xl mr-2 
                     ${data.vote_average >= 7 && "text-green-500"}
-                    ${
-                      data.vote_average <= 5 &&
-                      data.vote_average < 7 &&
-                      "text-yellow-400"
-                    }
+                    ${7 < data.vote_average >= 5 && "text-yellow-400"}
                     ${data.vote_average < 5 && "text-red-500"}
                     
                     `}

@@ -15,11 +15,9 @@ function SearchBar() {
     <div className="">
       <div className="flex bg-white rounded-md h-s focus:rounded-b-none">
         <input
-          className={
-            value
-              ? "mb-0 text-slate-700 px-3  rounded-md w-full focus:outline-none focus:rounded-b-none"
-              : "mb-0 text-slate-700 px-3  rounded-md w-full focus:outline-none"
-          }
+          className={`mb-0 text-slate-700 px-3  rounded-md w-full focus:outline-none ${
+            value ? "focus:rounded-b-none" : ""
+          }`}
           type="text"
           placeholder="Search here"
           onChange={(e) => {
