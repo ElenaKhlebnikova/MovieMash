@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchOneMovie } from "../../api";
 import { useParams } from "react-router-dom";
+import Rating from "../../components/rating";
 import Genres from "../../components/genres";
 import CastAndCrew from "./cast-and-crew";
 import GoBackBtn from "../../components/go-back-btn";
+import formatDate from "../../utils/format-date";
 
 function SeriesPage() {
   const { id } = useParams();
-
   const { data, isFetching } = useQuery({
     queryKey: [id, "tv"],
     queryFn: fetchOneMovie,
   });
-
-  const options = { month: "long", day: "numeric", year: "numeric" };
 
   return (
     <div>
@@ -51,17 +50,11 @@ function SeriesPage() {
                       ))}
                   </p>
                   <p className="text-start">
-                    📅{" "}
+                    📅
                     <span>
-                      {new Date(data.first_air_date).toLocaleString(
-                        "en-US",
-                        options
-                      )}{" "}
-                      -
-                      {new Date(data.last_air_date).toLocaleString(
-                        "en-US",
-                        options
-                      )}
+                      {formatDate(data.first_air_date) +
+                        "-" +
+                        formatDate(data.last_air_date)}
                     </span>
                   </p>
                   <p className="text-start">
@@ -81,24 +74,7 @@ function SeriesPage() {
           <div className="my-5">{data.overview}</div>
           <div>
             <div className="flex items-center justify-center">
-              <div className="mr-5">
-                <p>⭐</p>
-                <p
-                  className={`text-xl mr-2 
-                    ${data.vote_average >= 7 && "text-green-500"}
-                    ${
-                      data.vote_average <= 5 &&
-                      data.vote_average < 7 &&
-                      "text-yellow-400"
-                    }
-                    ${data.vote_average < 5 && "text-red-500"}
-                    
-                    `}
-                >
-                  {data.vote_average}
-                </p>
-                <p className="text-xs">({data.vote_count} votes)</p>
-              </div>
+              <Rating rating={data.vote_average} number={data.vote_count} />
               <div className="ml-5">
                 <p>👥</p>
                 <p className="text-xl mr-2">{data.popularity}</p>
@@ -144,13 +120,9 @@ function SeriesPage() {
                           {season.name}
                         </td>
                         <td className=" border-violet-400 border-b-2  p-2">
-                          {new Date(season.air_date).toLocaleString(
-                            "en-US",
-                            options
-                          )}
+                          {formatDate(season.air_date)}
                         </td>
                         <td className="max-w-min border-violet-400 border-b-2  p-2">
-                          {" "}
                           {season.episode_count}
                         </td>
                       </tr>

@@ -6,7 +6,7 @@ function GoBackBtn() {
     navigate(-1);
   };
   return (
-    <div className="sticky top-0 text-left">
+    <div className="sticky top-0 text-left my-5">
       <button className="text-5xl font-bold self-start" onClick={goBack}>
         &larr;
       </button>

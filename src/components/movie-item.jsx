@@ -14,18 +14,20 @@ function MovieItem({ item }) {
         <div>
           <Link to={`/${item.media_type}/${item.id}`}>
             <img
-              className="h-56"
+              className="h-52"
               src={`https://image.tmdb.org/t/p/original/` + item.poster_path}
             />
           </Link>
         </div>
         <div className="flex flex-col justify-between">
-          {item.character && <div>{item.character}</div>}
+          {item.character ||
+            (item.job && <div>{item.character || item.job}</div>)}
           <div className="flex flex-wrap content-center">
             {genres.map((genre) => {
               return genre[0] && <Genres key={genre[0].id} genre={genre[0]} />;
             })}
           </div>
+
           <Rating number={item.vote_count} rating={item.vote_average} />
           <div className="text-l font-semibold ">
             <Link to={`/${item.media_type}/${item.id}`}>

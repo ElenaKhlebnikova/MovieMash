@@ -2,8 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchOneMovie } from "../../api";
 import { useParams } from "react-router-dom";
 import Genres from "../../components/genres";
-import { useNavigate } from "react-router-dom";
 import Rating from "../../components/rating";
+import GoBackBtn from "../../components/go-back-btn";
+import formatDate from "../../utils/format-date";
 
 function MoviePage() {
   const { id } = useParams();
@@ -11,10 +12,7 @@ function MoviePage() {
     queryKey: [id, "movie"],
     queryFn: fetchOneMovie,
   });
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
+
   const calcMoney = (amount) => {
     if (amount > 10000000) {
       return Math.round(amount / 10000000) + "B";
@@ -31,9 +29,7 @@ function MoviePage() {
   };
   return (
     <div className="flex flex-col">
-      <button className="text-5xl font-bold self-start" onClick={goBack}>
-        &larr;
-      </button>
+      <GoBackBtn />
       {data && (
         <>
           <div>
@@ -65,7 +61,7 @@ function MoviePage() {
                     ))}
                   </p>
                   <p>
-                    📅 <span>{data.release_date}</span>
+                    📅 <span>{formatDate(data.release_date)}</span>
                   </p>
                   <p>
                     💰
@@ -85,7 +81,10 @@ function MoviePage() {
           <div className="my-5">{data.overview}</div>
           <div>
             <div className="flex items-center justify-center">
-              <Rating rating={data.votes_average} number={data.votes_count} />
+              {data !== undefined && (
+                <Rating rating={data.vote_average} number={data.vote_count} />
+              )}
+
               <div className="ml-5">
                 <p>👥</p>
                 <p className="text-xl mr-2">{data.popularity}</p>
