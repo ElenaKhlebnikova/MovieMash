@@ -5,8 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SearchResultsPage from "./pages/search/search-results-page";
 import MoviePage from "./pages/movie-series-page/movie-page";
 import SeriesPage from "./pages/movie-series-page/series-page";
-import CastAndCrewPage from "./pages/movie-series-page/cast-and-crew-page";
-import Person from "./pages/person";
+import Person from "./pages/person-page/person";
+import CastAll from "./pages/movie-series-page/cast-all";
+import CrewAll from "./pages/movie-series-page/crew-all";
 
 function App() {
   const queryClient = new QueryClient();
@@ -25,8 +26,12 @@ function App() {
       element: <SeriesPage />,
     },
     {
-      path: "/:media_type/:id/cast-and-crew",
-      element: <CastAndCrewPage />,
+      path: "/:media_type/:id/cast-and-crew/cast",
+      element: <CastAll />,
+    },
+    {
+      path: "/:media_type/:id/cast-and-crew/crew",
+      element: <CrewAll />,
     },
     {
       path: "/people/:id",

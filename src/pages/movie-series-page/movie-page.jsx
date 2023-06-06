@@ -3,6 +3,7 @@ import { fetchOneMovie } from "../../api";
 import { useParams } from "react-router-dom";
 import Genres from "../../components/genres";
 import { useNavigate } from "react-router-dom";
+import Rating from "../../components/rating";
 
 function MoviePage() {
   const { id } = useParams();
@@ -84,20 +85,7 @@ function MoviePage() {
           <div className="my-5">{data.overview}</div>
           <div>
             <div className="flex items-center justify-center">
-              <div className="mr-5">
-                <p>⭐</p>
-                <p
-                  className={`text-xl mr-2 
-                    ${data.vote_average >= 7 && "text-green-500"}
-                    ${7 < data.vote_average >= 5 && "text-yellow-400"}
-                    ${data.vote_average < 5 && "text-red-500"}
-                    
-                    `}
-                >
-                  {data.vote_average}
-                </p>
-                <p className="text-xs">({data.vote_count} votes)</p>
-              </div>
+              <Rating rating={data.votes_average} number={data.votes_count} />
               <div className="ml-5">
                 <p>👥</p>
                 <p className="text-xl mr-2">{data.popularity}</p>

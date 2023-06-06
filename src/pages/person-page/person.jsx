@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
-import { fetchOnePerson } from "../api";
+import { fetchOnePerson } from "../../api";
 import { useQuery } from "@tanstack/react-query";
-import getPicture from "../utils/get_picture";
+import getPicture from "../../utils/get_picture";
+import GoBackBtn from "../../components/go-back-btn";
+import Credits from "./credits";
 function Person() {
   const { id } = useParams();
 
@@ -12,6 +14,7 @@ function Person() {
 
   return (
     <>
+      <GoBackBtn />
       {data && (
         <>
           <div className="grid grid-cols-2">
@@ -32,6 +35,7 @@ function Person() {
             <p className="mr-2">{data.popularity}</p>
             <p className="text-justify w-full">{data.biography}</p>
           </div>
+          <Credits />
         </>
       )}
     </>

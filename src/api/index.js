@@ -51,10 +51,20 @@ const fetchOnePerson = async ({ queryKey }) => {
   return response.json();
 };
 
+const fetchPersonCredits = async ({ queryKey }) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/person/${queryKey[1]}/combined_credits?language=en-US`,
+    options
+  );
+
+  return response.json();
+};
+
 export {
   fetchMulti,
   fetchGenres,
   fetchOneMovie,
   fetchCastAndCrew,
   fetchOnePerson,
+  fetchPersonCredits,
 };
