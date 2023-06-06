@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCastAndCrew } from "../../api";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import PersonPreview from "./person-preview";
+import PersonPreview from "./person-page/person-preview";
 
 function CastAndCrew({ id, media }) {
   const { data } = useQuery({

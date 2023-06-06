@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { fetchOnePerson } from "../../api";
+import { fetchOnePerson } from "../../../api";
 import { useQuery } from "@tanstack/react-query";
-import getPicture from "../../utils/get-picture";
-import GoBackBtn from "../../components/go-back-btn";
-import formatDate from "../../utils/format-date";
+import getPicture from "../../../utils/get-picture";
+import GoBackBtn from "../../../components/go-back-btn";
+import formatDate from "../../../utils/format-date";
 import Credits from "./credits";
 function Person() {
   const { id } = useParams();

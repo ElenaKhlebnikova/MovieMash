@@ -5,9 +5,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SearchResultsPage from "./pages/search/search-results-page";
 import MoviePage from "./pages/movie-series-page/movie-page";
 import SeriesPage from "./pages/movie-series-page/series-page";
-import Person from "./pages/person-page/person";
-import CastAll from "./pages/movie-series-page/cast-all";
-import CrewAll from "./pages/movie-series-page/crew-all";
+import Person from "./pages/cast-and-crew/person-page/person-profile";
+import CastAll from "./pages/cast-and-crew/cast-all";
+import CrewAll from "./pages/cast-and-crew/crew-all";
 
 function App() {
   const queryClient = new QueryClient();

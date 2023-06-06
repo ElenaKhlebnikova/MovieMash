@@ -3,7 +3,7 @@ import { fetchOneMovie } from "../../api";
 import { useParams } from "react-router-dom";
 import Rating from "../../components/rating";
 import Genres from "../../components/genres";
-import CastAndCrew from "./cast-and-crew";
+import CastAndCrew from "../cast-and-crew/cast-and-crew";
 import GoBackBtn from "../../components/go-back-btn";
 import formatDate from "../../utils/format-date";
 

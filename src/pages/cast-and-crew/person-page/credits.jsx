@@ -2,9 +2,9 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import PropTypes from "prop-types";
-import { fetchPersonCredits } from "../../api";
+import { fetchPersonCredits } from "../../../api";
 import { useEffect, useState } from "react";
-import MovieItem from "../../components/movie-item";
+import MovieItem from "../../../components/movie-item";
 function Credits({ bio }) {
   const [bioIsShown, setBioIsShown] = useState(false);
   const [castIsShown, setCastIsShown] = useState(false);

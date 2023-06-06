@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { fetchMulti } from "../../api";
 import MovieItem from "../../components/movie-item";
+import GoBackBtn from "../../components/go-back-btn";
 function SearchResultsPage() {
   const { value } = useParams();
 
@@ -11,10 +12,13 @@ function SearchResultsPage() {
   });
 
   return (
-    <div className="grid grid-cols-1 gap-y-28 ">
-      {data &&
-        data.results.map((item) => <MovieItem key={item.id} item={item} />)}
-    </div>
+    <>
+      <GoBackBtn />
+      <div className="grid grid-cols-1 gap-y-28 ">
+        {data &&
+          data.results.map((item) => <MovieItem key={item.id} item={item} />)}
+      </div>
+    </>
   );
 }
 
