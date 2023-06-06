@@ -1,4 +1,5 @@
-const genre = (genre) => {
+// getClassNameFromGenre, name function and file the same name.
+const getClassNameFromGenre = (genre) => {
   let style = "";
   switch (genre) {
     case "Action":
@@ -65,4 +66,4 @@ const genre = (genre) => {
   return style;
 };
 
-export default genre;
+export default getClassNameFromGenre;

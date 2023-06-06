@@ -7,7 +7,9 @@ const options = {
   },
 };
 
-const fetchMulti = async (value) => {
+// you must export using named exports because it's cleaner and hyp
+export const fetchMulti = async (value) => {
+  // check if include_adult value is fasle or actually false
   const response = await fetch(
     `https://api.themoviedb.org/3/search/multi?query=${value.queryKey}&include_adult=fasle&language=en-US&page=1`,
     options
@@ -15,7 +17,7 @@ const fetchMulti = async (value) => {
   return response.json();
 };
 
-const fetchGenres = async () => {
+export const fetchGenres = async () => {
   const response = await fetch(
     "https://api.themoviedb.org/3/genre/movie/list?language=en",
     options
@@ -24,7 +26,7 @@ const fetchGenres = async () => {
   return response.json();
 };
 
-const fetchCastAndCrew = async ({ queryKey }) => {
+export const fetchCastAndCrew = async ({ queryKey }) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/${queryKey[2]}/${queryKey[1]}/aggregate_credits?language=en-US`,
     options
@@ -33,7 +35,7 @@ const fetchCastAndCrew = async ({ queryKey }) => {
   return response.json();
 };
 
-const fetchOneMovie = async ({ queryKey }) => {
+export const fetchOneMovie = async ({ queryKey }) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/${queryKey[1]}/${queryKey[0]}?language=en-US`,
     options
@@ -42,7 +44,7 @@ const fetchOneMovie = async ({ queryKey }) => {
   return response.json();
 };
 
-const fetchOnePerson = async ({ queryKey }) => {
+export const fetchOnePerson = async ({ queryKey }) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/person/${queryKey[1]}?language=en-US`,
     options
@@ -51,20 +53,11 @@ const fetchOnePerson = async ({ queryKey }) => {
   return response.json();
 };
 
-const fetchPersonCredits = async ({ queryKey }) => {
+export const fetchPersonCredits = async ({ queryKey }) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/person/${queryKey[1]}/combined_credits?language=en-US`,
     options
   );
 
   return response.json();
-};
-
-export {
-  fetchMulti,
-  fetchGenres,
-  fetchOneMovie,
-  fetchCastAndCrew,
-  fetchOnePerson,
-  fetchPersonCredits,
 };
