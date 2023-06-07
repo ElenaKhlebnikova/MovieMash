@@ -1,8 +1,7 @@
-import unknown from "../assets/no_img_person.png";
+import unknown from '../assets/no_img_person.png';
 const getPicture = (path) => {
-  if (path === null) {
-    return unknown;
-  } else return "https://image.tmdb.org/t/p/original/" + path;
+    path === null ? unknown : `https://image.tmdb.org/t/p/original/${path}`;
+    return 'https://image.tmdb.org/t/p/original/' + path;
 };
 
 export default getPicture;
