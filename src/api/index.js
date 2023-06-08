@@ -76,3 +76,21 @@ export const fetchSimilarMovies = async ({ queryKey }) => {
 
     return response.json();
 };
+
+export const fetchSimilarSeries = async ({ queryKey }) => {
+    const response = await fetch(
+        `https://api.themoviedb.org/3/tv/${queryKey[1]}/similar?language=en-US&page=1`,
+        options
+    );
+
+    return response.json();
+};
+
+export const fetchTrendingMovies = async ({ queryKey }) => {
+    const response = await fetch(
+        `https://api.themoviedb.org/3/trending/movie/${queryKey[1]}?language=en-US`,
+        options
+    );
+
+    return response.json();
+};

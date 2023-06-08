@@ -4,17 +4,23 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './rating';
 
-function MovieItem({ item }) {
+function MovieItem({ item, media_type }) {
     const genres = useGenres(item.genre_ids);
 
     return (
-        <div className=" border-violet-200 border-t-2 my-5">
+        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max">
             <h3 className="font-bold text-2xl my-5">
                 {item.title || item.name}
             </h3>
-            <div className="grid grid-cols-2">
-                <div>
-                    <Link to={`/${item.media_type}/${item.id}`}>
+            <div className="grid grid-cols-2 lg:flex lg:flex-col lg:w-full lg:items-center">
+                <div className="lg:mb-10">
+                    <Link
+                        to={`/${
+                            item.media_type === undefined
+                                ? media_type
+                                : item.media_type
+                        }/${item.id}`}
+                    >
                         <img
                             className="h-52"
                             src={
@@ -45,7 +51,9 @@ function MovieItem({ item }) {
                         rating={item.vote_average}
                     />
                     <div className="text-l font-semibold ">
-                        <Link to={`/${item.media_type}/${item.id}`}>
+                        <Link
+                            to={`/${item.media_type ?? media_type}/${item.id}`}
+                        >
                             <button className="underline hover:cursor-pointer hover:text-slate-300">
                                 Show more
                             </button>
@@ -58,7 +66,8 @@ function MovieItem({ item }) {
 }
 
 MovieItem.propTypes = {
-    item: PropTypes.object,
+    item: PropTypes.object.isRequired,
+    media_type: PropTypes.string.isRequired,
 };
 
 export default MovieItem;

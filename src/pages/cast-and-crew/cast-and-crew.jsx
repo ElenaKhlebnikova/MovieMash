@@ -8,8 +8,8 @@ function CastAndCrew({ id, media_type }) {
 
     return (
         <>
-            <div className="flex flex-col">
-                <h3 className="text-2xl my-5 font-semibold">Cast</h3>
+            <h3 className="text-2xl my-5 font-semibold">Cast</h3>
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-10">
                 {data !== undefined &&
                     data.cast
                         .slice(0, 5)
@@ -22,8 +22,9 @@ function CastAndCrew({ id, media_type }) {
                     </button>
                 </Link>
             </div>
-            <div className="flex flex-col">
-                <h3 className="text-2xl my-5 font-semibold">Crew</h3>
+
+            <h3 className="text-2xl my-5 font-semibold">Crew</h3>
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-10">
                 {data !== undefined &&
                     data.crew
                         .slice(0, 3)

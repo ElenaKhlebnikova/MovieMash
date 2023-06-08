@@ -1,36 +1,24 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { fetchSimilarMovies } from '../../../api';
 import MovieItem from '../../../components/movie-item';
 import { useEffect, useState } from 'react';
-
-function Similar() {
+import useFetchSimilarMovieOrTv from '../../../hooks/use-fetch-similar-movie-or-tv';
+import propTypes from 'prop-types';
+function Similar({ media_type }) {
     const { id } = useParams();
-    const { data, isLoading } = useQuery({
-        queryKey: ['similar', id],
-        queryFn: fetchSimilarMovies,
-    });
-
-    const [movieDisplayed, setMovieDisplayed] = useState();
+    const data = useFetchSimilarMovieOrTv(id, media_type);
+    const [mediaDisplayed, setmediaDisplayed] = useState();
     const [index, setIndex] = useState(0);
 
-    console.log({ curr: index });
     const handleNext = () => {
-        console.log({
-            next: index,
-        });
         if (index === data.results.length - 1) {
             setIndex(0);
         } else {
             setIndex(index + 1);
         }
-        setMovieDisplayed(data.results[index]);
+        setmediaDisplayed(data.results[index]);
     };
 
     const handlePrev = () => {
-        console.log({
-            prev: index,
-        });
         if (index === 0) {
             setIndex(data.results.length - 1);
         } else {
@@ -39,17 +27,19 @@ function Similar() {
     };
     useEffect(() => {
         if (data) {
-            console.log(data);
-
-            setMovieDisplayed(data.results[index]);
+            setmediaDisplayed(data.results[index]);
         }
-    }, [isLoading, index]);
+    }, [index, data]);
 
     return (
-        <div className="">
+        <div>
             <div>
-                {data && movieDisplayed !== undefined && (
-                    <MovieItem key={movieDisplayed.id} item={movieDisplayed} />
+                {data && mediaDisplayed !== undefined && (
+                    <MovieItem
+                        key={mediaDisplayed.id}
+                        item={mediaDisplayed}
+                        media_type={media_type}
+                    />
                 )}
             </div>
             <div className="flex justify-between text-lg font-bold">
@@ -70,4 +60,7 @@ function Similar() {
     );
 }
 
+Similar.propTypes = {
+    media_type: propTypes.string.isRequired,
+};
 export default Similar;

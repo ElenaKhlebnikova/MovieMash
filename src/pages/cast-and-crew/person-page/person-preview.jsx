@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 function PersonPreview({ person }) {
     return (
-        <div className="grid grid-cols-2 mb-5 " key={person.id}>
+        <div className="grid grid-cols-2 mb-5 lg:mx-3 " key={person.id}>
             <div>
                 <Link to={`/people/${person.id}`}>
                     <img
-                        className="w-fit mr-3 rounded-md"
+                        className="w-fit mr-3 rounded-md lg:h-44"
                         src={getPicture(person.profile_path)}
                     />
                 </Link>

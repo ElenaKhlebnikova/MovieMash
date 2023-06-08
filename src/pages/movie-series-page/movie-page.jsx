@@ -7,6 +7,7 @@ import GoBackBtn from '../../components/go-back-btn';
 import formatDate from '../../utils/format-date';
 import CastAndCrew from '../cast-and-crew/cast-and-crew';
 import Similar from './similar/similar';
+import SimilarLarge from './similar/similar-large-screen';
 
 function MoviePage() {
     const { id } = useParams();
@@ -30,87 +31,102 @@ function MoviePage() {
         }
     };
     return (
-        <div className="flex flex-col">
+        <>
+            {' '}
             <GoBackBtn />
-            {data && (
-                <>
-                    <div>
-                        <div className="flex flex-col my-5">
-                            <h3 className="text-xl">{data.title}</h3>
-                            <h3 className="text-xs">{data.original_title}</h3>
-                        </div>
-                        <div className="grid grid-cols-2 gap-5 mb-5">
-                            <div>
-                                <img
-                                    className="h-fit"
-                                    src={
-                                        `https://image.tmdb.org/t/p/original/` +
-                                        data.poster_path
-                                    }
-                                />
+            <div className="flex flex-col m-10 lg:grid lg:grid-cols-2">
+                {data && (
+                    <>
+                        <div>
+                            <div className="flex flex-col my-5">
+                                <h3 className="text-xl lg:text-2xl">
+                                    {data.title}
+                                </h3>
+                                <h3 className="text-xs lg:text-lg">
+                                    {data.original_title}
+                                </h3>
                             </div>
-                            <div>
-                                <div className="flex flex-col items-start gap-3">
-                                    <p className="text-start">
-                                        🌍
-                                        {data.production_countries.map(
-                                            (coun) => (
-                                                <span key={coun.name}>
-                                                    {coun.name ===
-                                                    'United States of America'
-                                                        ? 'USA'
-                                                        : coun.name ===
-                                                          'United Kingdom'
-                                                        ? 'UK'
-                                                        : coun.name}{' '}
-                                                </span>
-                                            )
-                                        )}
-                                    </p>
-                                    <p>
-                                        📅{' '}
-                                        <span>
-                                            {formatDate(data.release_date)}
-                                        </span>
-                                    </p>
-                                    <p>
-                                        💰
-                                        <span>{calcMoney(data.budget)}</span>
-                                    </p>
-                                    <p>
-                                        💵
-                                        <span>{calcMoney(data.revenue)}</span>
-                                    </p>
-                                    <p>
-                                        <span>{data.status}</span>
-                                    </p>
+
+                            <div className="grid grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <img
+                                        className="lg:h-96"
+                                        src={
+                                            `https://image.tmdb.org/t/p/original/` +
+                                            data.poster_path
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <div className="flex flex-col items-start gap-3">
+                                        <p className="text-start">
+                                            🌍
+                                            {data.production_countries.map(
+                                                (coun) => (
+                                                    <span key={coun.name}>
+                                                        {coun.name ===
+                                                        'United States of America'
+                                                            ? 'USA'
+                                                            : coun.name ===
+                                                              'United Kingdom'
+                                                            ? 'UK'
+                                                            : coun.name}{' '}
+                                                    </span>
+                                                )
+                                            )}
+                                        </p>
+                                        <p>
+                                            📅{' '}
+                                            <span>
+                                                {formatDate(data.release_date)}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            💰
+                                            <span>
+                                                {calcMoney(data.budget)}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            💵
+                                            <span>
+                                                {calcMoney(data.revenue)}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <span>{data.status}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="my-5 col-span-2">
+                                    {data.overview}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="my-5">{data.overview}</div>
-                    <div>
-                        <div className="flex items-center justify-center">
-                            {data !== undefined && (
-                                <Rating
-                                    rating={data.vote_average}
-                                    number={data.vote_count}
-                                />
-                            )}
+                            <div className="lg:col-start-1 lg:row-start-2">
+                                <div className="flex items-center justify-center">
+                                    {data !== undefined && (
+                                        <Rating
+                                            rating={data.vote_average}
+                                            number={data.vote_count}
+                                        />
+                                    )}
 
-                            <div className="ml-5">
-                                <p>👥</p>
-                                <p className="text-xl mr-2">
-                                    {data.popularity}
-                                </p>
+                                    <div className="ml-5">
+                                        <p>👥</p>
+                                        <p className="text-xl mr-2">
+                                            {data.popularity}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="my-10 flex flex-wrap justify-center">
+                                {data.genres.map((gen) => (
+                                    <Genres key={gen.id} genre={gen} />
+                                ))}
                             </div>
                         </div>
-                        <div className="my-10 flex flex-wrap justify-center">
-                            {data.genres.map((gen) => (
-                                <Genres key={gen.id} genre={gen} />
-                            ))}
-                        </div>
-                        <div className=" mt-20 flex flex-col justify-center items-center bg-gradient-to-r from-violet-500 to-fuchsia-500 p-5 rounded-md ">
+                        <div className=" mt-20 flex flex-col justify-center items-center bg-gradient-to-r from-violet-500 to-fuchsia-500 p-5 rounded-md lg:row-start-2 lg:col-start-1 lg:col-span-2">
                             <h3 className="text-2xl mb-5 font-semibold">
                                 Production
                             </h3>
@@ -128,17 +144,22 @@ function MoviePage() {
                                 );
                             })}
                         </div>
-                    </div>
-                    <div>
-                        <CastAndCrew id={id} media_type="movie" />
-                        <h3 className="text-2xl mb-5 mt-10 font-semibold">
-                            Similar
-                        </h3>
-                        <Similar />
-                    </div>
-                </>
-            )}
-        </div>
+
+                        <div className="lg:col-start-2 lg:row-start-1">
+                            <CastAndCrew id={id} media_type="movie" />
+                        </div>
+                        <div className="lg:col-span-2 lg:col-start-1 lg:row-start-3">
+                            <h3 className="text-2xl mb-5 mt-10 font-semibold">
+                                Similar
+                            </h3>
+
+                            {/* <Similar media_type="movie" /> */}
+                            <SimilarLarge media_type="movie" />
+                        </div>
+                    </>
+                )}
+            </div>
+        </>
     );
 }
 

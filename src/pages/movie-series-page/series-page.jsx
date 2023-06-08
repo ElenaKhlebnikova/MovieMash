@@ -6,6 +6,7 @@ import Genres from '../../components/genres';
 import CastAndCrew from '../cast-and-crew/cast-and-crew';
 import GoBackBtn from '../../components/go-back-btn';
 import formatDate from '../../utils/format-date';
+import Similar from './similar/similar';
 
 function SeriesPage() {
     const { id } = useParams();
@@ -155,7 +156,11 @@ function SeriesPage() {
                             </table>
                         </div>
                         <div>
-                            <CastAndCrew id={id} media="tv" />
+                            <CastAndCrew id={id} media_type="tv" />
+                            <h3 className="text-2xl mb-5 mt-10 font-semibold">
+                                Similar
+                            </h3>
+                            <Similar media_type="tv" />
                         </div>
                     </div>
                 </>
