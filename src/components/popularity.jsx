@@ -4,6 +4,7 @@ function Popularity({ data }) {
     return (
         <div className="lg:col-start-1 lg:row-start-2">
             <div className="flex items-center justify-center">
+                {/* maybe this could work with data && () */}
                 {data !== undefined && (
                     <Rating
                         rating={data.vote_average}

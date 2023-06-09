@@ -2,6 +2,8 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
+        // before starting with testing, this is really important to fix and it's very easy, check this link
+        // https://vitejs.dev/guide/env-and-mode.html
         Authorization:
             'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjA4MTUzNjMzNzM3MTAwNzM3NzI0ZDQ2N2E5M2QzYSIsInN1YiI6IjY0NzVkMTE4ZGQyNTg5MDEyMDA1ZTY3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rO_E2ULkrBXLFMvl92-gnZdQHoqGWd0gmkRP4cGi9n0',
     },

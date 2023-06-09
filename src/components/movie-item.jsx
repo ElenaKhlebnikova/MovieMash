@@ -57,7 +57,10 @@ function MovieItem({ item, media_type }) {
 }
 
 MovieItem.propTypes = {
-    item: PropTypes.object.isRequired,
+    item: PropTypes.shape({
+        vote_count: PropTypes.number.isRequired,
+        // you can add all of them here
+    }).isRequired,
     media_type: PropTypes.string,
 };
 

@@ -6,7 +6,7 @@ import BackgroundMovie from './background-movie';
 
 function Landing() {
     const { data } = useQuery({
-        queryKey: [['trendingMovie'], ['day']],
+        queryKey: ['trendingMovie', 'day'],
         queryFn: fetchTrendingMovies,
     });
 

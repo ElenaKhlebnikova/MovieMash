@@ -30,6 +30,7 @@ function App() {
         //2) /tv/:id/cast-and-crew/crew
         //3) /movie/:id/cast-and-crew/cast
         //4) /movie/:id/cast-and-crew/crew
+        // understood then change the above as well so it can stay consistent :)
 
         {
             path: '/:media_type/:id/cast-and-crew/cast',

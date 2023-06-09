@@ -1,4 +1,3 @@
-// I created this hook because I use it 3 times and it seems repetitive
 import { useQuery } from '@tanstack/react-query';
 import { fetchCastAndCrewMovie, fetchCastAndCrewSeries } from '../api';
 

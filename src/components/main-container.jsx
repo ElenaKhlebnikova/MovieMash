@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 function MainContaier({ children }) {
     return (
@@ -7,5 +7,10 @@ function MainContaier({ children }) {
         </div>
     );
 }
+
+// JSX components are `node` prop-types
+MainContaier.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default MainContaier;

@@ -25,6 +25,7 @@ function MoviePage() {
                         <Title data={data} />
                         <MainInfoContainer
                             img={data.poster_path}
+                            // rename from data to movie
                             data={data}
                             media_type={'movie'}
                         />

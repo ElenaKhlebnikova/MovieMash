@@ -12,6 +12,8 @@ import Production from './../../../components/production';
 
 function SeriesPage() {
     const { id } = useParams();
+
+    // rename function to fetchOne because you use it to fetch one movie and one serie
     const { data } = useQuery({
         queryKey: [id, 'tv'],
         queryFn: fetchOneMovie,

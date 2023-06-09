@@ -4,6 +4,7 @@ import PersonPreview from './person-page/person-preview';
 import GoBackBtn from '../../components/go-back-btn';
 
 function CastAll() {
+    // also here
     const { id } = useParams();
     const { media_type } = useParams();
     const data = useFetchCastCrewMovieOrTv(id, media_type);
