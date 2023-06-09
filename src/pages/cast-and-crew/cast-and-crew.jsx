@@ -9,7 +9,7 @@ function CastAndCrew({ id, media_type }) {
     return (
         <div className="lg:col-start-2 lg:row-start-2">
             <h3 className="text-2xl my-5 font-semibold">Cast</h3>
-            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-10">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-5">
                 {data !== undefined &&
                     data.cast
                         .slice(0, 5)
@@ -24,7 +24,7 @@ function CastAndCrew({ id, media_type }) {
             </div>
 
             <h3 className="text-2xl my-5 font-semibold">Crew</h3>
-            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-10">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-5">
                 {data !== undefined &&
                     data.crew
                         .slice(0, 3)

@@ -1,19 +1,17 @@
-import Genres from './genres/genre';
-import useGenres from '../hooks/use-genres';
+import Genres from './genres/genres';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './rating';
+import getPicture from '../utils/get-picture';
 
 function MovieItem({ item, media_type }) {
-    const genres = useGenres(item.genre_ids);
-
     return (
-        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max">
+        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max ">
             <h3 className="font-bold text-2xl my-5">
                 {item.title || item.name}
             </h3>
-            <div className="grid grid-cols-2 lg:flex lg:flex-col lg:w-full lg:items-center">
-                <div className="lg:mb-10">
+            <div className="grid grid-cols-2 lg:flex lg:justify-start">
+                <div className="lg:mb-10 lg:mr-10">
                     <Link
                         to={`/${
                             item.media_type === undefined
@@ -23,33 +21,26 @@ function MovieItem({ item, media_type }) {
                     >
                         <img
                             className="h-52"
-                            src={
-                                `https://image.tmdb.org/t/p/original/` +
-                                item.poster_path
-                            }
+                            src={getPicture(item.poster_path, 'movie')}
                         />
                     </Link>
                 </div>
                 <div className="flex flex-col justify-between">
                     {item.character ||
-                        (item.job && <div>{item.character || item.job}</div>)}
-                    <div className="flex flex-wrap content-center">
-                        {genres.map((genre) => {
-                            return (
-                                genre[0] && (
-                                    <Genres
-                                        key={genre[0].id}
-                                        genre={genre[0]}
-                                    />
-                                )
-                            );
-                        })}
-                    </div>
+                        (item.job && (
+                            <div className="lg:self-start">
+                                {item.character || item.job}
+                            </div>
+                        ))}
 
-                    <Rating
-                        number={item.vote_count}
-                        rating={item.vote_average}
-                    />
+                    <Genres data={item} />
+
+                    <div>
+                        <Rating
+                            number={item.vote_count}
+                            rating={item.vote_average}
+                        />
+                    </div>
                     <div className="text-l font-semibold ">
                         <Link
                             to={`/${item.media_type ?? media_type}/${item.id}`}
@@ -67,7 +58,7 @@ function MovieItem({ item, media_type }) {
 
 MovieItem.propTypes = {
     item: PropTypes.object.isRequired,
-    media_type: PropTypes.string.isRequired,
+    media_type: PropTypes.string,
 };
 
 export default MovieItem;

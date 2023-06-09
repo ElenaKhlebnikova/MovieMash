@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
 import getClassNameFromGenre from '../../utils/get-class-name-from-genre';
+
 function Genre({ genre }) {
     return (
-        <div
-            className={
-                'px-2 ml-2 mb-2 rounded-md bg-gradient-to-r' +
-                getClassNameFromGenre(genre.name)
-            }
-        >
-            {genre.name}
-        </div>
+        genre && (
+            <div
+                className={
+                    'px-2 ml-2 mb-2 rounded-md bg-gradient-to-r' +
+                    getClassNameFromGenre(genre.name)
+                }
+            >
+                {genre.name}
+            </div>
+        )
     );
 }
 

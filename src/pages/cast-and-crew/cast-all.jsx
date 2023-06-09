@@ -12,7 +12,7 @@ function CastAll() {
         <div>
             <GoBackBtn />
             <h3 className="text-2xl font-semibold my-5">All roles:</h3>
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 lg:mx-10 lg:gap-10">
                 {data &&
                     data.cast.map((person) => (
                         <PersonPreview key={person.id} person={person} />
