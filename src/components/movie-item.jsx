@@ -1,4 +1,4 @@
-import Genres from './genres';
+import Genres from './genres/genre';
 import useGenres from '../hooks/use-genres';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';

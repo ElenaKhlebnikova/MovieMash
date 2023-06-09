@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import getClassNameFromGenre from '../utils/get-class-name-from-genre';
-function Genres({ genre }) {
+import getClassNameFromGenre from '../../utils/get-class-name-from-genre';
+function Genre({ genre }) {
     return (
         <div
             className={
@@ -13,9 +13,9 @@ function Genres({ genre }) {
     );
 }
 
-Genres.propTypes = {
+Genre.propTypes = {
     genre: PropTypes.object,
     name: PropTypes.string,
 };
 
-export default Genres;
+export default Genre;
