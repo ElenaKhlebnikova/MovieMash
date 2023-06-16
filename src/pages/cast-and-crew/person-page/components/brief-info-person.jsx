@@ -2,9 +2,9 @@ import propTypes from 'prop-types';
 import getPicture from '../../../../utils/get-picture';
 import formatDate from '../../../../utils/format-date';
 
-function BriefInfoPerson({ data, device }) {
+const BriefInfoPerson = ({ data, device }) => {
     return (
-        <div className="">
+        <div>
             <h3 className="mb-5 font-semibold text-xl">{data.name}</h3>
             <div className="grid grid-cols-2 lg:grid-cols-5 ">
                 <div className="lg:mx-5">
@@ -38,7 +38,7 @@ function BriefInfoPerson({ data, device }) {
             </div>
         </div>
     );
-}
+};
 
 BriefInfoPerson.propTypes = {
     data: propTypes.object.isRequired,

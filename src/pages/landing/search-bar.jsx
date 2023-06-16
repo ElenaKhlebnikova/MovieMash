@@ -4,25 +4,30 @@ import { useQuery } from '@tanstack/react-query';
 import SearchBarResults from './search-bar-results';
 import { Link } from 'react-router-dom';
 
-function SearchBar() {
+const SearchBar = () => {
     const [value, setValue] = useState('');
+    const [active, setActive] = useState(false);
     const { data, refetch } = useQuery({
         queryKey: [value],
         queryFn: fetchMulti,
     });
 
+    if (!data) return null;
+
     return (
         <div className="mx-3 lg:flex lg:flex-col">
             <div className="flex bg-white rounded-md h-s focus:rounded-b-none w-full">
                 <input
-                    className={`mb-0 text-slate-700 px-3  rounded-md w-full focus:outline-none ${
+                    className={`mb-0 text-slate-700 px-3  rounded-md  focus:outline-none ${
                         value ? 'focus:rounded-b-none' : ''
                     } lg:w-96`}
                     type="text"
                     placeholder="Search here"
+                    onClick={() => setActive(true)}
                     onChange={(e) => {
                         setValue(e.target.value);
                         refetch();
+                        e.target.value === '' && setActive(false);
                     }}
                     value={value}
                 />
@@ -39,9 +44,9 @@ function SearchBar() {
                     </Link>
                 </div>
             </div>
-            {data && <SearchBarResults data={data.results} />}
+            <SearchBarResults data={data.results} />
         </div>
     );
-}
+};
 
 export default SearchBar;

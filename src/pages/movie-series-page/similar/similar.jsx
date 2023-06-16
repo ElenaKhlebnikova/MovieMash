@@ -3,7 +3,7 @@ import SimilarSmallScreen from './similar-small-screen';
 import SimilarLargeScreen from './similar-large-screen';
 import getScreenWidth from '../../../utils/get-screen-width';
 
-function Similar({ media_type }) {
+const Similar = ({ media_type }) => {
     const device = getScreenWidth();
 
     return (
@@ -15,7 +15,7 @@ function Similar({ media_type }) {
             )}
         </>
     );
-}
+};
 
 Similar.propTypes = {
     media_type: propTypes.string.isRequired,

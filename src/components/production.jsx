@@ -1,10 +1,11 @@
 import propTypes from 'prop-types';
-function Production({ data }) {
+
+const Production = ({ data }) => {
     return (
         <div className=" mt-20 flex flex-col justify-center items-center bg-gradient-to-r from-violet-500 to-fuchsia-500 p-5 rounded-md lg:row-start-3 lg:col-start-1 lg:col-span-2 ">
             <h3 className="text-2xl mb-5 font-semibold">Production</h3>
             {data.production_companies.map((prod) => {
-                return prod.logo_path !== null ? (
+                return prod.logo_path ? (
                     <img
                         className="h-14 my-3 opacity-100"
                         src={
@@ -18,7 +19,7 @@ function Production({ data }) {
             })}
         </div>
     );
-}
+};
 
 Production.propTypes = {
     data: propTypes.object.isRequired,

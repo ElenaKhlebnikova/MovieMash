@@ -2,31 +2,37 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZjA4MTUzNjMzNzM3MTAwNzM3NzI0ZDQ2N2E5M2QzYSIsInN1YiI6IjY0NzVkMTE4ZGQyNTg5MDEyMDA1ZTY3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rO_E2ULkrBXLFMvl92-gnZdQHoqGWd0gmkRP4cGi9n0',
+        Authorization: import.meta.env.VITE_TOKEN,
     },
 };
 
+const url = import.meta.env.VITE_URL;
+
 export const fetchMulti = async (value) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${value.queryKey}&include_adult=false&language=en-US&page=1`,
+        `${url}/search/multi?query=${value.queryKey}&include_adult=false&language=en-US&page=1`,
         options
     );
     return response.json();
 };
 
-export const fetchGenres = async () => {
+export const fetchGenresMovie = async () => {
     const response = await fetch(
-        'https://api.themoviedb.org/3/genre/movie/list?language=en',
+        `${url}/genre/movie/list?language=en`,
         options
     );
 
     return response.json();
 };
 
+export const fetchGenresSeries = async () => {
+    const response = await fetch(`${url}/genre/tv/list?language=en`, options);
+
+    return response.json();
+};
 export const fetchCastAndCrewSeries = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/tv/${queryKey[1]}/aggregate_credits?language=en-US`,
+        `${url}/tv/${queryKey[1]}/aggregate_credits?language=en-US`,
         options
     );
 
@@ -35,16 +41,16 @@ export const fetchCastAndCrewSeries = async ({ queryKey }) => {
 
 export const fetchCastAndCrewMovie = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${queryKey[1]}/credits?language=en-US`,
+        `${url}/movie/${queryKey[1]}/credits?language=en-US`,
         options
     );
 
     return response.json();
 };
 
-export const fetchOneMovie = async ({ queryKey }) => {
+export const fetchOneMovieOrSeries = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/${queryKey[1]}/${queryKey[0]}?language=en-US`,
+        `${url}/${queryKey[1]}/${queryKey[0]}?language=en-US`,
         options
     );
 
@@ -53,7 +59,7 @@ export const fetchOneMovie = async ({ queryKey }) => {
 
 export const fetchOnePerson = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/person/${queryKey[1]}?language=en-US`,
+        `${url}/person/${queryKey[1]}?language=en-US`,
         options
     );
 
@@ -62,7 +68,7 @@ export const fetchOnePerson = async ({ queryKey }) => {
 
 export const fetchPersonCredits = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/person/${queryKey[1]}/combined_credits?language=en-US`,
+        `${url}/person/${queryKey[1]}/combined_credits?language=en-US`,
         options
     );
     return response.json();
@@ -70,7 +76,7 @@ export const fetchPersonCredits = async ({ queryKey }) => {
 
 export const fetchSimilarMovies = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${queryKey[1]}/similar?language=en-US&page=1`,
+        `${url}/movie/${queryKey[1]}/similar?language=en-US&page=1`,
         options
     );
 
@@ -79,7 +85,7 @@ export const fetchSimilarMovies = async ({ queryKey }) => {
 
 export const fetchSimilarSeries = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/tv/${queryKey[1]}/similar?language=en-US&page=1`,
+        `${url}/tv/${queryKey[1]}/similar?language=en-US&page=1`,
         options
     );
 
@@ -88,7 +94,7 @@ export const fetchSimilarSeries = async ({ queryKey }) => {
 
 export const fetchTrendingMovies = async ({ queryKey }) => {
     const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/${queryKey[1]}?language=en-US`,
+        `${url}/trending/movie/${queryKey[1]}?language=en-US`,
         options
     );
 

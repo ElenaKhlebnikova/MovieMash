@@ -1,20 +1,35 @@
-//Hook accepts id of genre and returns a genre string
-import { fetchGenres } from '../api';
+import { fetchGenresMovie, fetchGenresSeries } from '../api';
 import { useQuery } from '@tanstack/react-query';
 
-const useGenres = (idArr) => {
+const useGenres = (idArr, media) => {
     let genres = [];
+    const seriesGenre = useQuery({
+        queryKey: ['genreSeries'],
+        queryFn: fetchGenresSeries,
+        enabled: media === 'tv',
+    }).data;
 
-    const { data } = useQuery({
-        queryFn: fetchGenres,
-    });
+    const movieGenre = useQuery({
+        queryKey: ['genreMovies'],
+        queryFn: fetchGenresMovie,
+        enabled: media === 'movie',
+    }).data;
 
-    if (data && idArr) {
-        genres = idArr.map((id) => data.genres.filter((gen) => gen.id === id));
-        return genres;
+    console.log({ idArr, movieGenre });
+
+    if ((movieGenre ?? seriesGenre) && idArr) {
+        const data = movieGenre ?? seriesGenre;
+
+        genres = idArr.map((id) =>
+            data.genres.find(
+                (gen) => gen.id === (typeof id === 'number' ? id : id.id)
+            )
+        );
     }
 
-    return genres !== [] && genres;
+    console.log(genres);
+
+    return genres;
 };
 
 export default useGenres;

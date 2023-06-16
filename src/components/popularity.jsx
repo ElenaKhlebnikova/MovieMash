@@ -1,6 +1,7 @@
 import Rating from './rating';
 import propTypes from 'prop-types';
-function Popularity({ data }) {
+
+const Popularity = ({ data }) => {
     return (
         <div className="lg:col-start-1 lg:row-start-2">
             <div className="flex items-center justify-center">
@@ -18,7 +19,7 @@ function Popularity({ data }) {
             </div>
         </div>
     );
-}
+};
 
 Popularity.propTypes = {
     data: propTypes.object.isRequired,

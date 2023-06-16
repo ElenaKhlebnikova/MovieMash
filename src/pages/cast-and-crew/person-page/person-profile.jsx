@@ -6,7 +6,7 @@ import Credits from './credits';
 import BriefInfoPerson from './components/brief-info-person';
 import getScreenWidth from '../../../utils/get-screen-width';
 
-function Person() {
+const Person = () => {
     const { id } = useParams();
     const { data } = useQuery({
         queryKey: ['onePerson', id],
@@ -17,7 +17,7 @@ function Person() {
     return (
         <>
             <GoBackBtn />
-            <div className="mx-5 lg:mx-10 ">
+            <div className="m-5 lg:m-15 ">
                 {data && (
                     <>
                         <BriefInfoPerson data={data} device={device} />
@@ -27,6 +27,6 @@ function Person() {
             </div>
         </>
     );
-}
+};
 
 export default Person;

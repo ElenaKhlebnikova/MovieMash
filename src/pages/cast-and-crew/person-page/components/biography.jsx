@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
 
-function Biography({ bio }) {
+const Biography = ({ bio }) => {
     const [bioIsShown, setBioIsShown] = useState(false);
     return (
         <div>
@@ -31,7 +31,7 @@ function Biography({ bio }) {
             </div>
         </div>
     );
-}
+};
 
 Biography.propTypes = {
     bio: propTypes.string.isRequired,

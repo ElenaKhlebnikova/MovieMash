@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import useFetchSimilarMovieOrTv from '../../../hooks/use-fetch-similar-movie-or-tv';
 import Carousel from '../../../components/carousel';
 
-function SimilarLargeScreen({ media_type }) {
+const SimilarLargeScreen = ({ media_type }) => {
     const { id } = useParams();
     const data = useFetchSimilarMovieOrTv(id, media_type);
 
@@ -17,7 +17,7 @@ function SimilarLargeScreen({ media_type }) {
             <Carousel data={data} media_type={media_type} />
         </div>
     );
-}
+};
 
 SimilarLargeScreen.propTypes = {
     media_type: propTypes.string.isRequired,

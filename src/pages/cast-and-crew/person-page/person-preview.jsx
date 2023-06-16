@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import getPicture from '../../../utils/get-picture';
 import { Link } from 'react-router-dom';
 
-function PersonPreview({ person }) {
+const PersonPreview = ({ person }) => {
     return (
         <div
             className="grid grid-cols-2 mb-5 lg:mx-3  lg:justify-items-start"
@@ -36,7 +36,7 @@ function PersonPreview({ person }) {
             </div>
         </div>
     );
-}
+};
 
 PersonPreview.propTypes = {
     person: PropTypes.object,

@@ -1,24 +1,24 @@
 import MovieItem from './movie-item';
 import propTypes from 'prop-types';
 
-function Carousel({ data, media_type }) {
+const Carousel = ({ data, media_type }) => {
+    if (!data) return null;
     return (
         <div id="scroll-movie-parent">
             <div className="lg:flex" id="movie-scroll">
-                {data &&
-                    data.results.map((item) => {
-                        return (
-                            <MovieItem
-                                key={item.id}
-                                item={item}
-                                media_type={media_type}
-                            />
-                        );
-                    })}
+                {data.results.map((item) => {
+                    return (
+                        <MovieItem
+                            key={item.id}
+                            item={item}
+                            media_type={media_type}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
-}
+};
 
 Carousel.propTypes = {
     data: propTypes.object.isRequired,

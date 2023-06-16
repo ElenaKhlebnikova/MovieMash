@@ -2,7 +2,7 @@ import formatMoney from '../../../../utils/format-money';
 import formatDate from '../../../../utils/format-date';
 import propTypes from 'prop-types';
 
-function BriefInfoMovie({ data }) {
+const BriefInfoMovie = ({ data }) => {
     return (
         <div>
             <div className="flex flex-col items-start gap-3">
@@ -37,7 +37,7 @@ function BriefInfoMovie({ data }) {
             </div>
         </div>
     );
-}
+};
 
 BriefInfoMovie.propTypes = {
     data: propTypes.object.isRequired,

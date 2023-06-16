@@ -3,7 +3,8 @@ import MovieItem from '../../../components/movie-item';
 import { useEffect, useState } from 'react';
 import useFetchSimilarMovieOrTv from '../../../hooks/use-fetch-similar-movie-or-tv';
 import propTypes from 'prop-types';
-function SimilarSmallScreen({ media_type }) {
+
+const SimilarSmallScreen = ({ media_type }) => {
     const { id } = useParams();
     const data = useFetchSimilarMovieOrTv(id, media_type);
     const [mediaDisplayed, setmediaDisplayed] = useState();
@@ -31,19 +32,20 @@ function SimilarSmallScreen({ media_type }) {
         }
     }, [index, data]);
 
+    if (!data || !mediaDisplayed) return null;
+
     return (
         <div>
             <div>
-                {data && mediaDisplayed !== undefined && (
-                    <MovieItem
-                        key={mediaDisplayed.id}
-                        item={mediaDisplayed}
-                        media_type={media_type}
-                    />
-                )}
+                <MovieItem
+                    key={mediaDisplayed.id}
+                    item={mediaDisplayed}
+                    media_type={media_type}
+                />
             </div>
             <div className="flex justify-between text-lg font-bold">
                 <button
+                    data-testid="prev-item"
                     onClick={() => handlePrev()}
                     className="hover:cursor-pointer"
                 >
@@ -58,7 +60,7 @@ function SimilarSmallScreen({ media_type }) {
             </div>
         </div>
     );
-}
+};
 
 SimilarSmallScreen.propTypes = {
     media_type: propTypes.string.isRequired,
