@@ -1,6 +1,5 @@
 import propTypes from 'prop-types';
-import getPicture from '../../../../utils/get-picture';
-import formatDate from '../../../../utils/format-date';
+import { formatDate, getPicture } from '../../../../utils';
 
 const BriefInfoPerson = ({ data, device }) => {
     return (

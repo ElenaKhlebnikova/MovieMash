@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import getPicture from '../../../utils/get-picture';
+import { getPicture } from '../../../utils';
 import { Link } from 'react-router-dom';
 
 const PersonPreview = ({ person }) => {

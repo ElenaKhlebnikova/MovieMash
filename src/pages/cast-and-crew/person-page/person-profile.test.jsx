@@ -1,115 +1,51 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import App from '../../../App';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
+import renderApp from '../../../tests/render-app';
 
 describe('Person profile', async () => {
-    const queryClient = new QueryClient();
-    it('renders name', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+    it('renders main information', async () => {
+        renderApp('/people/5530');
 
         expect(await screen.findAllByText('James McAvoy')).toBeDefined();
-    });
-
-    it('renders main information', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        expect(await screen.findByText(/Glasgow, Scotland, UK/)).toBeDefined();
-        expect(await screen.findByText(/April 21, 1979/)).toBeDefined();
-        expect(await screen.findByText(/26.349/)).toBeDefined();
+        expect(screen.getByText(/Glasgow, Scotland, UK/)).toBeDefined();
+        expect(screen.getByText(/April 21, 1979/)).toBeDefined();
+        expect(screen.getByText(/26.349/)).toBeDefined();
     });
 
     it('Shows biography on clicking "Biography"', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        renderApp('/people/5530');
 
         const biography = await screen.findByText('Biography');
-        expect(biography).toBeDefined();
         fireEvent.click(biography);
-
-        expect(
-            await screen.findByText(/and appeared mostly on television/i)
-        ).toBeDefined();
+        screen.getByText(/and appeared mostly on television/i);
     });
 
-    it('Shows all projects the person starred in', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+    it('Shows all projects the person starred in and took part as a member of the crew', async () => {
+        renderApp('/people/5530');
 
-        expect(await screen.findByText('Strings')).toBeDefined();
-        expect(await screen.findByText(/^Inside/)).toBeDefined();
+        await screen.findByText('Strings');
+        screen.getByText(/^Inside/);
+        screen.getByText('50/50');
+        screen.getByText('Filth');
     });
 
-    it('Shows all projects the person took part in as a crew member', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+    it('Filters projects as cast and crew based on the input value', async () => {
+        renderApp('/people/5530');
 
-        expect(await screen.findByText('50/50')).toBeDefined();
-        expect(await screen.findByText('Filth')).toBeDefined();
-    });
+        //CAST
 
-    it('Filters projects as cast based on the input value', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        const testMovie = await screen.findByText('Strings');
+        await screen.findByText('Strings');
         const castSelect = screen.getByTestId('test-select-cast');
-
         fireEvent.change(castSelect, { target: { value: 'tv' } });
-        expect(castSelect).toBeDefined();
-        expect(await screen.findByText(/Foyle's War/)).toBeDefined();
+        screen.getByText(/Foyle's War/);
+        expect(screen.queryByText('Strings')).toBeNull();
 
-        expect(testMovie).toBeNull;
-    });
+        //CREW
 
-    it('Filters projects as crew based on the input value', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/people/5530']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        const testMovie = await screen.findByText('50/50');
+        screen.getByText('50/50');
         const crewSelect = screen.getByTestId('test-select-crew');
-
         fireEvent.change(crewSelect, { target: { value: 'tv' } });
-        expect(crewSelect).toBeDefined();
-        expect(testMovie).toBeNull;
+        expect(screen.queryByText('50/50')).toBeNull();
     });
 });

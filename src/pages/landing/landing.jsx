@@ -1,5 +1,5 @@
 import SearchBar from './search-bar';
-import getPicture from '../../utils/get-picture';
+import { getPicture } from '../../utils';
 import BackgroundMovie from './background-movie';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTrendingMovies } from '../../api';

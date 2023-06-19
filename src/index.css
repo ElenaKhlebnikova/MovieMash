@@ -58,3 +58,8 @@
         left: -100%;
     }
 }
+/* 
+#search-landing {
+    transition: left 1s ease-in;
+    left: 0;
+} */

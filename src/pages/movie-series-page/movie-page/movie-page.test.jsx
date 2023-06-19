@@ -1,117 +1,61 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import App from '../../../App';
-import { MemoryRouter } from 'react-router-dom';
+import { describe, it } from 'vitest';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
+import renderApp from '../../../tests/render-app';
 
-describe('Search page results', async () => {
-    const queryClient = new QueryClient();
+describe('Movie page', async () => {
+    it('renders main information and genres', async () => {
+        renderApp('/movie/123');
 
-    it('renders movie title', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
+        await screen.findAllByText('The Lord of the Rings');
+
+        screen.getByText('4M');
+        screen.getByText('3B');
+        screen.getByText('Released');
+        screen.getByText('November 15, 1978');
+        screen.getByText('6');
+        screen.getByText('.56');
+        screen.getByText(
+            /The Fellowship of the Ring embark on a journey to destroy the One Ring and end Sauron/
         );
 
-        expect(screen.findAllByText('The Lord of the Rings')).toBeDefined();
-    });
+        screen.getByText('21.747');
 
-    it('renders main ingormation', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        expect(await screen.findByText('4M')).toBeDefined();
-        expect(await screen.findByText('3B')).toBeDefined();
-        expect(await screen.findByText('Released')).toBeDefined();
-        expect(await screen.findByText('November 15, 1978')).toBeDefined();
-        expect(await screen.findByText('6')).toBeDefined();
-        expect(await screen.findByText('.56')).toBeDefined();
-        expect(
-            await screen.findByText(
-                /The Fellowship of the Ring embark on a journey to destroy the One Ring and end Sauron/
-            )
-        ).toBeDefined();
-        expect(await screen.findByText('21.747')).toBeDefined();
+        await screen.findByText('Romance');
+        screen.getByText('Comedy');
     });
 
     it('renders cast and crew', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        renderApp('/movie/123');
 
-        expect(await screen.findByText('Christopher Guard')).toBeDefined();
-        expect(await screen.findByText('William Squire')).toBeDefined();
-        expect(await screen.findByText('Saul Zaentz')).toBeDefined();
-        expect(await screen.findByText('J.R.R. Tolkien')).toBeDefined();
+        await screen.findByText('Christopher Guard');
+        screen.getByText('William Squire');
+        screen.getByText('Saul Zaentz');
+        screen.getByText('J.R.R. Tolkien');
     });
 
-    it('renders similar genres', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+    it('renders similar movies and renders next and prev similar movies on button click', async () => {
+        renderApp('/movie/123');
 
-        expect(await screen.findByText('Romance')).toBeDefined();
-        expect(await screen.findByText('Comedy')).toBeDefined();
-    });
-
-    it('renders similar movies', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        expect(
-            await screen.findByText('Sebuah Seni untuk Memahami Kekasih')
-        ).toBeDefined();
-    });
-
-    it('renders next and prev similar movies on button click', async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/movie/123']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
+        await screen.findByText('Sebuah Seni untuk Memahami Kekasih');
         const next = screen.getByRole('button', {
             name: /→/,
         });
+        //Getting bt test ID as the left arrow is already used for go back btn
+        //so this way it is sure that the right button is found
+
         const prev = screen.getByTestId('prev-item');
 
-        expect(next).toBeDefined;
-        expect(prev).toBeDefined;
+        fireEvent.click(next);
+        screen.getByText('Chorabali');
 
         fireEvent.click(next);
-        expect(await screen.findByText('Chorabali')).toBeDefined();
+        screen.getByText('Seven Elements');
 
         fireEvent.click(next);
-        expect(await screen.findByText('Seven Elements')).toBeDefined();
-
-        fireEvent.click(next);
-        expect(await screen.findByText('The Day of the Locust')).toBeDefined();
+        screen.getByText('The Day of the Locust');
 
         fireEvent.click(prev);
-        expect(await screen.findByText('Seven Elements')).toBeDefined();
+        screen.getByText('Seven Elements');
     });
 });

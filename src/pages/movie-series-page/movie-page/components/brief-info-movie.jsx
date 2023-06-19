@@ -1,5 +1,4 @@
-import formatMoney from '../../../../utils/format-money';
-import formatDate from '../../../../utils/format-date';
+import { formatDate, formatMoney } from '../../../../utils';
 import propTypes from 'prop-types';
 
 const BriefInfoMovie = ({ data }) => {

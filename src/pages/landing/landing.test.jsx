@@ -1,54 +1,30 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter } from 'react-router-dom';
-import App from '../../App';
+import { screen, fireEvent } from '@testing-library/react';
+import renderApp from '../../tests/render-app';
 
 describe('Landing', async () => {
     it('renders movie data correctly', async () => {
-        const queryClient = new QueryClient();
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        renderApp('/');
 
-        const title = await screen.findByText('Fast X');
-        expect(title).toBeDefined;
+        await screen.findByText('Fast X');
 
-        const int = await screen.findByText('7');
-        const dec = await screen.findByText('.372');
-
-        expect(int).toBeDefined;
-        expect(dec).toBeDefined;
+        screen.getByText('7');
+        screen.getByText('.372');
     });
 
     it('shows search results when typing', async () => {
-        const queryClient = new QueryClient();
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter initialEntries={['/']}>
-                    <App />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        renderApp('/');
 
-        const headig = await screen.findByText(
+        await screen.findByText(
             'MovieMash: Where you meet your perfect movie match!'
         );
-        expect(headig).toBeDefined;
 
-        const searchBar = await screen.getByRole('textbox');
+        const searchBar = screen.getByRole('textbox');
         fireEvent.change(searchBar, { target: { value: 'scrubs' } });
         expect(searchBar.value).toBe('scrubs');
 
-        const firstItem = await screen.findByText('Scrubs');
-        const secondItem = await screen.findByText('Scrubs: Interns');
-        const thirdItem = await screen.findByText('Wormwood Scrubs');
-        expect(firstItem).toBeDefined;
-        expect(secondItem).toBeDefined;
-        expect(thirdItem).toBeDefined;
+        await screen.findByText('Scrubs');
+        screen.getByText('Scrubs: Interns');
+        screen.getByText('Wormwood Scrubs');
     });
 });

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import GoBackBtn from '../../../components/go-back-btn';
 import Credits from './credits';
 import BriefInfoPerson from './components/brief-info-person';
-import getScreenWidth from '../../../utils/get-screen-width';
+import { getScreenWidth } from '../../../utils';
 
 const Person = () => {
     const { id } = useParams();

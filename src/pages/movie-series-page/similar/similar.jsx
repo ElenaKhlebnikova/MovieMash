@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import SimilarSmallScreen from './similar-small-screen';
 import SimilarLargeScreen from './similar-large-screen';
-import getScreenWidth from '../../../utils/get-screen-width';
+import { getScreenWidth } from '../../../utils';
 
 const Similar = ({ media_type }) => {
     const device = getScreenWidth();

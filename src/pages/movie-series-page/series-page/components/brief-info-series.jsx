@@ -1,4 +1,4 @@
-import formatDate from '../../../../utils/format-date';
+import { formatDate } from '../../../../utils';
 import propTypes from 'prop-types';
 
 const BriefInfoSeries = ({ data }) => {

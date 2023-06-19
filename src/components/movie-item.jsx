@@ -2,10 +2,9 @@ import Genres from './genres/genres';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './rating';
-import getPicture from '../utils/get-picture';
+import { getPicture } from '../utils';
 
 const MovieItem = ({ item, media_type }) => {
-    console.log(media_type);
     return (
         <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max ">
             <h3 className="font-bold text-2xl my-5">
