@@ -15,8 +15,6 @@ const useGenres = (idArr, media) => {
         enabled: media === 'movie',
     }).data;
 
-    console.log({ idArr, movieGenre });
-
     if ((movieGenre ?? seriesGenre) && idArr) {
         const data = movieGenre ?? seriesGenre;
 
@@ -26,8 +24,6 @@ const useGenres = (idArr, media) => {
             )
         );
     }
-
-    console.log(genres);
 
     return genres;
 };

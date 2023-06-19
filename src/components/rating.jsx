@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 const Rating = ({ rating, number }) => {
     if (!rating) return null;
+
     const ratingSrt = rating.toString();
     const int = ratingSrt.split('.')[0];
     const dec = ratingSrt.split('.')[1];

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../../App';
 
+// these 3 tests can be a single test.
 describe('Search page results', async () => {
     it('renders search results names', async () => {
         const queryClient = new QueryClient();

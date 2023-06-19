@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import getClassNameFromGenre from '../../utils/get-class-name-from-genre';
 
 const Genre = ({ genre }) => {
-    console.log({ genre });
-
     if (!genre) return null;
+
     return (
         <div
             className={

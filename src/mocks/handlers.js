@@ -13,7 +13,7 @@ import { onePersonCredits } from './data/one-person-credits';
 
 export const handlers = [
     rest.get(
-        'https://api.themoviedb.org/3/search/multi?query=scrubs&include_adult=false&language=en-US&page=1',
+        'https://api.themoviedb.org/3/search/multi',
 
         (req, res, ctx) => {
             return res(ctx.json(searchPageResuts));
@@ -38,14 +38,14 @@ export const handlers = [
     ),
 
     rest.get(
-        'https://api.themoviedb.org/3/movie/123/credits?language=en-US',
+        'https://api.themoviedb.org/3/movie/123/credits',
 
         (req, res, ctx) => {
             return res(ctx.json(castAndCrewMovie));
         }
     ),
     rest.get(
-        'https://api.themoviedb.org/3/movie/123/similar?language=en-US&page=1',
+        'https://api.themoviedb.org/3/movie/123/similar',
 
         (req, res, ctx) => {
             return res(ctx.json(similarMovies));
@@ -53,7 +53,7 @@ export const handlers = [
     ),
 
     rest.get(
-        'https://api.themoviedb.org/3/genre/movie/list?language=en',
+        'https://api.themoviedb.org/3/genre/movie/list',
 
         (req, res, ctx) => {
             return res(ctx.json(genresMovies));
@@ -63,14 +63,14 @@ export const handlers = [
     // TV shows' handlers
 
     rest.get(
-        'https://api.themoviedb.org/3/tv/:id?language=en-US',
+        'https://api.themoviedb.org/3/tv/:id',
 
         (req, res, ctx) => {
             return res(ctx.json(oneSeries));
         }
     ),
     rest.get(
-        'https://api.themoviedb.org/3/tv/1668/similar?language=en-US&page=1',
+        'https://api.themoviedb.org/3/tv/1668/similar',
 
         (req, res, ctx) => {
             return res(ctx.json(similarSeries));
@@ -88,14 +88,14 @@ export const handlers = [
     // Handlers related to people
 
     rest.get(
-        'https://api.themoviedb.org/3/person/5530?language=en-US',
+        'https://api.themoviedb.org/3/person/5530',
 
         (req, res, ctx) => {
             return res(ctx.json(onePerson));
         }
     ),
     rest.get(
-        'https://api.themoviedb.org/3/person/5530/combined_credits?language=en-US',
+        'https://api.themoviedb.org/3/person/5530/combined_credits',
 
         (req, res, ctx) => {
             return res(ctx.json(onePersonCredits));

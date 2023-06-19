@@ -86,14 +86,17 @@ describe('Person profile', async () => {
             </QueryClientProvider>
         );
 
-        const testMovie = await screen.findByText('Strings');
+        await screen.findByText('Strings');
         const castSelect = screen.getByTestId('test-select-cast');
 
         fireEvent.change(castSelect, { target: { value: 'tv' } });
         expect(castSelect).toBeDefined();
         expect(await screen.findByText(/Foyle's War/)).toBeDefined();
 
-        expect(testMovie).toBeNull;
+        // query again when you expect an element that was already found to be not found
+        // query returns null
+        // always query again and not use the same variable
+        expect(screen.queryByText('Strings')).toBeNull();
     });
 
     it('Filters projects as crew based on the input value', async () => {

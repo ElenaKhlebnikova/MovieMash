@@ -12,7 +12,6 @@ const Genres = ({ data, media_type }) => {
     return (
         <div className="my-10 flex flex-wrap justify-center lg:flex-col">
             {genres.map((gen) => {
-                console.log(gen);
                 return (
                     <div key={Math.random()}>
                         <Genre key={Math.random()} genre={gen} />
