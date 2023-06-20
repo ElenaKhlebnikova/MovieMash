@@ -26,8 +26,9 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'pnpm'
             - name: Install dependencies
-            - run: pnpm install
-            - run: pnpm test:ci
+              run: pnpm install
+            - name: Run tests
+              run: pnpm test:ci
               env:
-               VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
-               VITE_URL: ${{ secrets.VITE_URL }}
+                VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
+                VITE_URL: ${{ secrets.VITE_URL }}
