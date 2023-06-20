@@ -4,13 +4,18 @@
 name: MovieMash CI
 
 on:
+    # this job should run only on PRs and not main
+    #  and on main you should have another job which runs only on main and tests and deploy (probably another workflow file)
     push:
         branches: ['main']
     pull_request:
         branches: ['main']
 
 jobs:
-    build:
+    test:
+        # This job called "test" runs on every PR and on main branch
+        # we need to deploy our application to Netlify on PR merge into main or when pushing to main
+        # but before we deploy to Netlify, we need to run linting and testing and if those pass then we deploy
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -27,8 +32,10 @@ jobs:
                   cache: 'pnpm'
             - name: Install dependencies
               run: pnpm install
+            - name: Lint
+              run: pnpm lint
             - name: Run tests
               run: pnpm test:ci
               env:
-                VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
-                VITE_URL: ${{ secrets.VITE_URL }}
+                  VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
+                  VITE_URL: ${{ secrets.VITE_URL }}
