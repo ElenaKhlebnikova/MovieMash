@@ -8,6 +8,7 @@ import CrewAll from './pages/cast-and-crew/crew-all';
 import { Routes, Route } from 'react-router-dom';
 
 const App = () => (
+    //comment to check ci
     <div>
         <Routes>
             <Route path="/" element={<Landing />} />
