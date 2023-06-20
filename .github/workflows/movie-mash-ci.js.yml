@@ -2,9 +2,7 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: MovieMash CI
-env:
-  VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
-  VITE_URL: ${{ secrets.VITE_URL }}
+
 on:
     push:
         branches: ['main']
@@ -30,3 +28,6 @@ jobs:
             - name: Install dependencies
             - run: pnpm install
             - run: pnpm test:ci
+              env:
+               VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
+               VITE_URL: ${{ secrets.VITE_URL }}
