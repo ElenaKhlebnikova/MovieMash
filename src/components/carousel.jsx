@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 
 const Carousel = ({ data, media_type }) => {
     if (!data) return null;
+
     return (
         <div id="scroll-movie-parent">
             <div className="lg:flex" id="movie-scroll">

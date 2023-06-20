@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import PropTypes from 'prop-types';

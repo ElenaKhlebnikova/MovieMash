@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import MovieItem from '../../../../components/movie-item';

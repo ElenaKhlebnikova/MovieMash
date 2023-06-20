@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './rating';
 import { getPicture } from '../utils';
+import Title from './title';
 
 const MovieItem = ({ item, media_type }) => {
     return (
-        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max ">
-            <h3 className="font-bold text-2xl my-5">
-                {item.title || item.name}
-            </h3>
+        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max flex flex-col flex-wrap">
+            <Title title={item.name ?? item.title} />
             <div className="grid grid-cols-2 lg:flex lg:justify-start">
                 <div className="lg:mb-10 lg:mr-10">
                     <Link

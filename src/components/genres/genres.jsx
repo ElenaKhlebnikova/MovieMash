@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import PropTypes from 'prop-types';
 import Genre from './genre';
 import useGenres from '../../hooks/use-genres';

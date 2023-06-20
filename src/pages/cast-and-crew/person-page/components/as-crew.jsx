@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-constant-condition */
 import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
