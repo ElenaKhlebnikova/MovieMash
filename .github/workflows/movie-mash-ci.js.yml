@@ -8,6 +8,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    
+env:
+VITE_TOKEN=${{ secrets.VITE_TOKEN}}
+
+VITE_URL=${{ secrets.VITE_URL}}
 
 jobs:
   build:
