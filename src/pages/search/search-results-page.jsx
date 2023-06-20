@@ -16,7 +16,7 @@ const SearchResultsPage = () => {
     return (
         <>
             <GoBackBtn />
-            <div className="grid grid-cols-1 gap-y-28 lg:grid-cols-2 m-10">
+            <div className="inline-grid grid-cols-1 gap-y-28 lg:grid-cols-2 m-10">
                 {data.results.map((item) => (
                     <MovieItem key={item.id} item={item} />
                 ))}

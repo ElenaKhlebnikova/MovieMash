@@ -9,8 +9,15 @@
         "plugin:import/recommended"
     ],
     "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
-    "settings": { "react": { "version": "18.2" } },
-    "plugins": ["react-refresh"],
+    "settings": {
+        "react": { "version": "18.2" },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx"]
+            }
+        }
+    },
+    "plugins": ["import", "react-refresh", "react", "react-hooks"],
     "rules": {
         "react-refresh/only-export-components": "warn",
         "import/newline-after-import": ["warn", { "count": 1 }]
