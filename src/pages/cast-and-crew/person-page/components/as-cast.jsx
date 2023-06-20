@@ -17,6 +17,7 @@ const AsCast = ({ data, isLoading }) => {
 
     useEffect(() => {
         !isLoading && filterFn();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [valueCast, isLoading]);
 
     if (!data) return null;

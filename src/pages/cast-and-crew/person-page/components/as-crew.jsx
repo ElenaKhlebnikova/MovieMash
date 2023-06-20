@@ -18,6 +18,7 @@ const AsCrew = ({ data, isLoading }) => {
 
     useEffect(() => {
         !isLoading && filterFn();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [valueCrew, isLoading]);
 
     if (!data) return null;
