@@ -3,8 +3,8 @@
 
 name: MovieMash CI
 env:
- VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
- VITE_URL: ${{ secrets.VITE_URL }}
+  VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
+  VITE_URL: ${{ secrets.VITE_URL }}
 on:
     push:
         branches: ['main']
