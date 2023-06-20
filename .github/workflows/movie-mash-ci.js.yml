@@ -29,4 +29,5 @@ jobs:
         cache-dependency-path: "**/pnpm-lock.yaml"
  
     - run: npm install
+    -run: npm install --legacy-peer-deps
     - run: npm run test:ci
