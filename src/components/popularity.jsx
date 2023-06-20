@@ -22,7 +22,7 @@ const Popularity = ({ data }) => {
 };
 
 Popularity.propTypes = {
-    data: propTypes.object.isRequired,
+    data: propTypes.shape,
 };
 
 export default Popularity;
