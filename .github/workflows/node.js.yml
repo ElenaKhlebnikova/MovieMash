@@ -28,4 +28,4 @@ jobs:
         cache: "npm"
         cache-dependency-path: "**/pnpm-lock.yaml"
  
-    - run: npm test:ci
+    - run: npm run test:ci
