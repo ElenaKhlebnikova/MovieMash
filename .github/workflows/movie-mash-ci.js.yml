@@ -4,34 +4,26 @@
 name: MovieMash CI
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-    
-env:
-VITE_TOKEN=${{ secrets.VITE_TOKEN}}
-
-VITE_URL=${{ secrets.VITE_URL}}
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "npm"
-        cache-dependency-path: "**/pnpm-lock.yaml"
- 
-    - run: npm install --legacy-peer-deps
-    - run: npm run test:ci
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [15]
+        steps:
+            - uses: actions/checkout@v3
+            - uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+            - name: Install dependencies
+              run: pnpm install
