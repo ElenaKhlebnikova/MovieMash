@@ -6,27 +6,32 @@ on:
     - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-        cache: 'pnpm'
-        cache-dependency-path: pnpm-lock.yaml
-    - name: Install dependencies
-      run: pnpm install 
-    - name: Run tests
-      run: pnpm run test:ci
-    - name: Build file
-      run: pnpm run build
-    - name: Deploy production to Netlify
-      uses: South-Paw/action-netlify-deploy@v1.2.0
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-        build-dir: './build'
-        comment-on-commit: true
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [18.x]
+        steps:
+            - uses: actions/checkout@v3
+            - uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+            - name: Install dependencies
+              run: pnpm install
+            - name: Run tests
+              run: pnpm run test:ci
+            - name: Build file
+              run: pnpm run build
+            - name: Deploy production to Netlify
+              uses: South-Paw/action-netlify-deploy@v1.2.0
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+                build-dir: './build'
+                comment-on-commit: true
