@@ -17,11 +17,11 @@ jobs:
         cache: 'npm'
         cache-dependency-path: package-lock.json
     - name: Install dependencies
-      run: npm install 
+      run: pnpm install 
     - name: Run tests
     - run: pnpm run test:ci
     - name: Build file
-      run: pnpm run build
+    - run: pnpm run build
     - name: Deploy production to Netlify
       uses: South-Paw/action-netlify-deploy@v1.2.0
       with:
