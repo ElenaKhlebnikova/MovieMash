@@ -7,6 +7,7 @@ const Production = ({ data }) => {
             {data.production_companies.map((prod) => {
                 return prod.logo_path ? (
                     <img
+                        key={prod.id}
                         className="h-14 my-3 opacity-100"
                         src={
                             'https://image.tmdb.org/t/p/original/' +
@@ -14,7 +15,9 @@ const Production = ({ data }) => {
                         }
                     />
                 ) : (
-                    <p className="my-3 ">{prod.name}</p>
+                    <p key={prod.id} className="my-3">
+                        {prod.name}
+                    </p>
                 );
             })}
         </div>

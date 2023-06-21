@@ -1,4 +1,4 @@
-export const genresMovies = {
+export const genres = {
     genres: [
         {
             id: 28,

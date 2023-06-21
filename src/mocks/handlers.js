@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import {
     castAndCrewMovie,
     castAndCrewSeries,
-    genresMovies,
+    genres,
     oneMovieResult,
     onePersonCredits,
     onePerson,
@@ -58,7 +58,7 @@ export const handlers = [
         'https://api.themoviedb.org/3/genre/movie/list',
 
         (req, res, ctx) => {
-            return res(ctx.json(genresMovies));
+            return res(ctx.json(genres));
         }
     ),
 
@@ -84,6 +84,13 @@ export const handlers = [
 
         (req, res, ctx) => {
             return res(ctx.json(castAndCrewSeries));
+        }
+    ),
+    rest.get(
+        'https://api.themoviedb.org/3/genre/tv/list',
+
+        (req, res, ctx) => {
+            return res(ctx.json(genres));
         }
     ),
 
