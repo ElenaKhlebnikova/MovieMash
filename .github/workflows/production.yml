@@ -22,8 +22,6 @@ jobs:
     - run: pnpm run test:ci
     - name: Build file
       run: pnpm run build
-      
-
     - name: Deploy production to Netlify
       uses: South-Paw/action-netlify-deploy@v1.2.0
       with:
