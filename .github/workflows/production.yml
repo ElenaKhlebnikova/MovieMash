@@ -1,4 +1,4 @@
-name: "ci-cd pipeline"
+name: "MovieMash production"
 
 on: 
   push:
