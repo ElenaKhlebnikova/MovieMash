@@ -28,8 +28,6 @@ jobs:
               env:
                   VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
                   VITE_URL: ${{ secrets.VITE_URL }}
-            - name: Build file
-              run: pnpm run build
             - name: Deploy production to Netlify
               uses: South-Paw/action-netlify-deploy@v1.2.0
               with:
