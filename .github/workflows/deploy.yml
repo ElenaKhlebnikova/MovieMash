@@ -1,13 +1,13 @@
-name: Test application
+name: Deploy application
 
 on:
-    pull_request:
+    push:
         branches:
             - main
     workflow_dispatch:
 
 jobs:
-    test_app:
+    deploy_app:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repo
@@ -21,10 +21,22 @@ jobs:
                   cache: 'pnpm'
             - name: Install dependencies
               run: pnpm install
-            - name: Lint application
+            - name: Lint
               run: pnpm lint
             - name: Run tests
               run: pnpm test:ci
               env:
                   VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
                   VITE_URL: ${{ secrets.VITE_URL }}
+            - name: Deploy production to Netlify
+              uses: nwtgck/actions-netlify@v2.0
+              with:
+                  production-branch: main
+                  production-deploy: true
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  deploy-message: ${{ github.event.head_commit.message }}
+                  publish-dir: './dist'
+              env:
+                  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+              timeout-minutes: 1
