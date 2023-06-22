@@ -42,7 +42,9 @@ jobs:
               with:
                   production-branch: main
                   production-deploy: true
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  enable-pull-request-comment: false
+                  overwrites-pull-request-comment: false
+                  enable-commit-comment: false
                   deploy-message: ${{ github.event.head_commit.message }}
                   publish-dir: './dist'
 
