@@ -31,6 +31,9 @@ jobs:
               env:
                   VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
                   VITE_URL: ${{ secrets.VITE_URL }}
+
+            - name: Build app
+              run: pnpm build
             - name: Deploy production to Netlify
               uses: nwtgck/actions-netlify@v2.0
               with:
