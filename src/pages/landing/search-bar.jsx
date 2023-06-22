@@ -14,12 +14,12 @@ const SearchBar = () => {
 
     return (
         <div
-            className="mx-3 lg:flex lg:flex-col w-11/12 absolute top-5 left-0 lg:relative"
+            className="mx-3 lg:flex lg:flex-col w-11/12 absolute top-24 left-0 lg:relative lg:top-0"
             id="search-landing"
         >
-            <div className="flex bg-white rounded-md h-s focus:rounded-b-none w-full justify-between ">
+            <div className="flex bg-white rounded-r-full rounded-l-full h-s focus:rounded-b-none w-full justify-between ">
                 <input
-                    className={`mb-0 text-slate-700 px-3  rounded-md  focus:outline-none ${
+                    className={`mb-0 text-slate-700 px-3  rounded-r-full rounded-l-full  focus:outline-none ${
                         value ? 'focus:rounded-b-none' : ''
                     } lg:w-96`}
                     type="text"
@@ -36,7 +36,7 @@ const SearchBar = () => {
                             onClick={() => {
                                 refetch();
                             }}
-                            className="row-start-2 h-s w-fit bg-gradient-to-r from-violet-500 to-fuchsia-500  text-white px-3 py-2 rounded-md hover:hover:bg-gradient-to-l"
+                            className="row-start-2 h-s w-fit bg-gradient-to-r from-violet-500 to-fuchsia-500  text-white px-3 py-2 rounded-r-full rounded-l-full hover:hover:bg-gradient-to-l"
                         >
                             Search
                         </button>

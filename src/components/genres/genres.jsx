@@ -9,7 +9,7 @@ const Genres = ({ data, media_type }) => {
     );
 
     return (
-        <div className="my-10 flex flex-wrap justify-center">
+        <div className="my-10 flex flex-col flex-wrap justify-center">
             {genres.map((gen) => {
                 return (
                     <div key={Math.random()}>
