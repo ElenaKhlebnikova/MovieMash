@@ -1,28 +1,30 @@
-name: test
+name: Test application
 
 on:
     pull_request:
-        branches: ['main']
+        branches:
+            - main
+    workflow_dispatch:
 
 jobs:
-    build:
+    test-app:
         runs-on: ubuntu-latest
         strategy:
             matrix:
                 node-version: [18.x]
         steps:
-            - uses: actions/checkout@v3
-            - uses: pnpm/action-setup@v2
-              with:
-                  version: 8
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Checkout repo
+              uses: actions/checkout@v3
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+            - name: Install Node.js 18
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 18
                   cache: 'pnpm'
             - name: Install dependencies
               run: pnpm install
-            - name: Lint
+            - name: Lint application
               run: pnpm lint
             - name: Run tests
               run: pnpm test:ci

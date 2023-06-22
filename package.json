@@ -49,6 +49,7 @@
     "msw": {
         "workerDirectory": "public"
     },
+    "packageManager": "pnpm@8.6.0",
     "lint-staged": {
         "*.{js,jsx}": [
             "pnpm format",
