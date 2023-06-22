@@ -1,0 +1,33 @@
+name: Test application
+
+on:
+    pull_request:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    test-app:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [18.x]
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v3
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+            - name: Install Node.js 18
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  cache: 'pnpm'
+            - name: Install dependencies
+              run: pnpm install
+            - name: Lint application
+              run: pnpm lint
+            - name: Run tests
+              run: pnpm test:ci
+              env:
+                  VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
+                  VITE_URL: ${{ secrets.VITE_URL }}

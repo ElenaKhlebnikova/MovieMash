@@ -16,17 +16,19 @@ const Seasons = ({ data }) => {
                 </thead>
                 {data.seasons.map((season) => {
                     return (
-                        <tr key={season.id}>
-                            <td className=" border-violet-400 border-b-2  p-2">
-                                {season.name}
-                            </td>
-                            <td className=" border-violet-400 border-b-2  p-2">
-                                {formatDate(season.air_date)}
-                            </td>
-                            <td className="max-w-min border-violet-400 border-b-2  p-2">
-                                {season.episode_count}
-                            </td>
-                        </tr>
+                        <tbody key={season.id}>
+                            <tr>
+                                <td className=" border-violet-400 border-b-2  p-2">
+                                    {season.name}
+                                </td>
+                                <td className=" border-violet-400 border-b-2  p-2">
+                                    {formatDate(season.air_date)}
+                                </td>
+                                <td className="max-w-min border-violet-400 border-b-2  p-2">
+                                    {season.episode_count}
+                                </td>
+                            </tr>
+                        </tbody>
                     );
                 })}
             </table>

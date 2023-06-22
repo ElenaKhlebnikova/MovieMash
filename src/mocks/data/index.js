@@ -1,6 +1,6 @@
 export { castAndCrewMovie } from './mocks-data/cast-and-crew-movie';
 export { castAndCrewSeries } from './mocks-data/cast-and-crew-series';
-export { genresMovies } from './mocks-data/genres';
+export { genres } from './mocks-data/genres';
 export { oneMovieResult } from './mocks-data/one-movie';
 export { onePersonCredits } from './mocks-data/one-person-credits';
 export { onePerson } from './mocks-data/one-person';

@@ -49,8 +49,14 @@
     "msw": {
         "workerDirectory": "public"
     },
+    "packageManager": "pnpm@8.6.0",
     "lint-staged": {
-        "*.jsx": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-        "*.js": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+        "*.{js,jsx}": [
+            "pnpm format",
+            "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+        ],
+        "*.{css,md,yaml,yml,json}": [
+            "pnpm format"
+        ]
     }
 }
