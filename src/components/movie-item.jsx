@@ -43,7 +43,7 @@ const MovieItem = ({ item, media_type }) => {
                             rating={item.vote_average}
                         />
                     </div>
-                    <div className="text-l font-semibold ">
+                    <div className="text-base font-semibold ">
                         <Link
                             to={`/${item.media_type ?? media_type}/${item.id}`}
                         >

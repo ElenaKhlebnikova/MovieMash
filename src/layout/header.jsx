@@ -1,7 +1,9 @@
+import logo from '../assets/logo.png';
+
 const Header = () => {
     return (
-        <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500">
-            Header
+        <div className="w-screen p-5">
+            <img className="h-14 lg:h-16" src={logo} />
         </div>
     );
 };

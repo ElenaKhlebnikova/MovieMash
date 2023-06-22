@@ -6,7 +6,7 @@ const Genre = ({ genre }) => {
     return (
         <div
             className={
-                'px-2 ml-2 mb-2 rounded-md bg-gradient-to-r' +
+                'text-sm font-medium px-2 ml-2 mb-2 rounded-md bg-gradient-to-r' +
                 getClassNameFromGenre(genre.name)
             }
         >
