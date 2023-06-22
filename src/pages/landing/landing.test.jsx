@@ -6,7 +6,7 @@ describe('Landing', async () => {
     it('renders movie data correctly', async () => {
         renderApp('/');
 
-        await screen.findByText('Fast X');
+        await screen.findAllByText('Fast X');
 
         screen.getByText('7');
         screen.getByText('.372');
