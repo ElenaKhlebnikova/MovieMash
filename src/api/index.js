@@ -100,3 +100,13 @@ export const fetchTrendingMovies = async ({ queryKey }) => {
 
     return response.json();
 };
+
+export const fetchTrendingSeries = async ({ queryKey }) => {
+    const response = await fetch(
+        `${url}/trending/tv/${queryKey[1]}?language=en-US`,
+
+        options
+    );
+
+    return response.json();
+};

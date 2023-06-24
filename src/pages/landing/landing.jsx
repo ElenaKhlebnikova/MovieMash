@@ -2,25 +2,61 @@ import SearchBar from './search-bar';
 import { getPicture } from '../../utils';
 import BackgroundMovie from './background-movie';
 import { useQuery } from '@tanstack/react-query';
-import { fetchTrendingMovies } from '../../api';
+import { fetchTrendingMovies, fetchTrendingSeries } from '../../api';
 import Header from '../../layout/header';
 import Trending from './components/trending-movies';
 import Switch from './components/switch';
 import { useState } from 'react';
+import SwitchMoviesSeriesPeople from './components/switch-movies-series-people';
 
 const Landing = () => {
     const [today, setToday] = useState(true);
-    const { data: todayData } = useQuery({
+    const [movie, setMovie] = useState(true);
+    const [tv, setTv] = useState(false);
+    const [people, setPeople] = useState(false);
+
+    // use different fetch and different data instead of passing queryKey conditionally
+    // so that data is not re-rendered and page doesn't reload
+
+    const { data: todayDataMovie } = useQuery({
         queryKey: ['trendingMovie', 'day'],
         queryFn: fetchTrendingMovies,
     });
 
-    const { data: weekData } = useQuery({
+    const { data: weekDataMovie } = useQuery({
         queryKey: ['trendingMovie', 'week'],
         queryFn: fetchTrendingMovies,
     });
 
-    if (!todayData) return null;
+    const { data: todayDataSeries } = useQuery({
+        queryKey: ['trendingSeries', 'day'],
+        queryFn: fetchTrendingSeries,
+    });
+
+    const { data: weekDataSeries } = useQuery({
+        queryKey: ['trendingSeries', 'week'],
+        queryFn: fetchTrendingSeries,
+    });
+
+    const selectMovie = () => {
+        setMovie(true);
+        setTv(false);
+        setPeople(false);
+    };
+
+    const selectTv = () => {
+        setMovie(false);
+        setTv(true);
+        setPeople(false);
+    };
+
+    const selectPeople = () => {
+        setMovie(false);
+        setTv(false);
+        setPeople(true);
+    };
+
+    if (!todayDataMovie) return null;
 
     return (
         <div>
@@ -30,7 +66,7 @@ const Landing = () => {
                     backgroundImage: `linear-gradient(353deg, #1e1e1e 15%, rgba(95,45,117,.7) 83%),
                             
                             url(${getPicture(
-                                todayData.results[0].backdrop_path
+                                todayDataMovie.results[0].backdrop_path
                             )})`,
                 }}
             >
@@ -45,7 +81,7 @@ const Landing = () => {
                         <SearchBar />
                     </div>
                     <div className="lg:row-start-3 col-start-1 mx-5 my-7">
-                        <BackgroundMovie item={todayData.results[0]} />
+                        <BackgroundMovie item={todayDataMovie.results[0]} />
                     </div>
                 </div>
             </div>
@@ -54,7 +90,30 @@ const Landing = () => {
                 switch={() => (today ? setToday(false) : setToday(true))}
                 today={today}
             />
-            <Trending items={today ? todayData : weekData} today={today} />
+            <SwitchMoviesSeriesPeople
+                props={{
+                    selectMovie,
+                    selectTv,
+                    selectPeople,
+                    tv,
+                    movie,
+                    people,
+                }}
+            />
+            <Trending
+                items={
+                    today && movie
+                        ? todayDataMovie
+                        : !today && movie
+                        ? weekDataMovie
+                        : today && tv
+                        ? todayDataSeries
+                        : !today && tv
+                        ? weekDataSeries
+                        : todayDataMovie
+                }
+                today={today}
+            />
         </div>
     );
 };
