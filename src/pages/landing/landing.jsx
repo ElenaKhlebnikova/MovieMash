@@ -2,7 +2,11 @@ import SearchBar from './search-bar';
 import { getPicture } from '../../utils';
 import BackgroundMovie from './background-movie';
 import { useQuery } from '@tanstack/react-query';
-import { fetchTrendingMovies, fetchTrendingSeries } from '../../api';
+import {
+    fetchTrendingMovies,
+    fetchTrendingSeries,
+    fetchTrendingPeople,
+} from '../../api';
 import Header from '../../layout/header';
 import Trending from './components/trending-movies';
 import Switch from './components/switch';
@@ -36,6 +40,16 @@ const Landing = () => {
     const { data: weekDataSeries } = useQuery({
         queryKey: ['trendingSeries', 'week'],
         queryFn: fetchTrendingSeries,
+    });
+
+    const { data: todayPeopleData } = useQuery({
+        queryKey: ['trendingpeople', 'day'],
+        queryFn: fetchTrendingPeople,
+    });
+
+    const { data: weekPeopleData } = useQuery({
+        queryKey: ['trendingpeople', 'week'],
+        queryFn: fetchTrendingPeople,
     });
 
     const selectMovie = () => {
@@ -85,6 +99,9 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
+            <h2 className="text-2xl font-semibold mt-14 ml-10 text-left">
+                Trending
+            </h2>
 
             <Switch
                 switch={() => (today ? setToday(false) : setToday(true))}
@@ -101,7 +118,7 @@ const Landing = () => {
                 }}
             />
             <Trending
-                items={
+                movieOrTvData={
                     today && movie
                         ? todayDataMovie
                         : !today && movie
@@ -110,9 +127,16 @@ const Landing = () => {
                         ? todayDataSeries
                         : !today && tv
                         ? weekDataSeries
-                        : todayDataMovie
+                        : null
                 }
                 today={today}
+                peopleData={
+                    today && people
+                        ? todayPeopleData
+                        : !today && people
+                        ? weekPeopleData
+                        : null
+                }
             />
         </div>
     );

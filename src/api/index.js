@@ -110,3 +110,13 @@ export const fetchTrendingSeries = async ({ queryKey }) => {
 
     return response.json();
 };
+
+export const fetchTrendingPeople = async ({ queryKey }) => {
+    const response = await fetch(
+        `${url}/trending/person/${queryKey[1]}?language=en-US`,
+
+        options
+    );
+
+    return response.json();
+};

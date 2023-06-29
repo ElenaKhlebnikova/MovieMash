@@ -1,16 +1,20 @@
-import Carousel from '../../../components/carousel';
 import propTypes from 'prop-types';
+import Carousel from '../../../components/carousel';
+import PersonOverview from '../../../components/person-overview';
 
-const Trending = ({ items }) => {
+const Trending = ({ movieOrTvData, peopleData }) => {
+    console.log(peopleData);
     return (
         <div className="mt-10 text-2xl ">
-            <Carousel data={items} />
+            {movieOrTvData && <Carousel data={movieOrTvData} />}
+            {peopleData && <PersonOverview data={peopleData} />}
         </div>
     );
 };
 
 Trending.propTypes = {
-    items: propTypes.object.isRequired,
+    movieOrTvData: propTypes.object,
+    peopleData: propTypes.object,
 };
 
 export default Trending;
