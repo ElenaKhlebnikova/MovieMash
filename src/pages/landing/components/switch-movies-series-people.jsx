@@ -61,7 +61,7 @@ const SwitchMoviesSeriesPeople = ({ props }) => {
 };
 
 SwitchMoviesSeriesPeople.propTypes = {
-    props: PropTypes.shape,
+    props: PropTypes.object,
     movie: PropTypes.bool,
     tv: PropTypes.bool,
     people: PropTypes.bool,

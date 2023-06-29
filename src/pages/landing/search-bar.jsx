@@ -14,7 +14,7 @@ const SearchBar = () => {
 
     return (
         <div
-            className="mx-3 lg:flex lg:flex-col w-11/12 absolute top-24 left-0 lg:relative lg:top-0"
+            className="mx-3 lg:flex lg:flex-col w-11/12 absolute top-20 left-0 lg:relative lg:top-0"
             id="search-landing"
         >
             <div className="flex bg-white rounded-r-full rounded-l-full h-s focus:rounded-b-none w-full justify-between ">
