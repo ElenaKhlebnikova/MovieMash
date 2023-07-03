@@ -4,7 +4,7 @@ import { getPicture } from '../utils';
 
 const PersonOverview = ({ data }) => {
     return (
-        <div className=" flex-col py-10 rounded-xl mx-10 bg-gradient-to-r  from-neutral-700 to-neutral-800 bg-opacity-75">
+        <div className=" flex-col py-10 rounded-xl mx-10 bg-gradient-to-r  from-neutral-800 to-neutral-700 bg-opacity-75">
             {data.results &&
                 data.results.map((person) => {
                     return (

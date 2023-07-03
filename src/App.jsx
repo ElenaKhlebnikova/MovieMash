@@ -6,25 +6,77 @@ import Person from './pages/cast-and-crew/person-page/person-profile';
 import CastAll from './pages/cast-and-crew/cast-all';
 import CrewAll from './pages/cast-and-crew/crew-all';
 import { Routes, Route } from 'react-router-dom';
+import Header from './layout/header';
+import ExploreMoviesPage from './pages/explore-page/explore-movies-page';
 
 const App = () => (
-    //comment to check ci
     <div>
         <Routes>
             <Route path="/" element={<Landing />} />
 
-            <Route path="/movie/:id" element={<MoviePage />} />
-            <Route path="/tv/:id" element={<SeriesPage />} />
+            <Route
+                path="/movie/:id"
+                element={
+                    <>
+                        <Header />
+                        <MoviePage />
+                    </>
+                }
+            />
+            <Route
+                path="/tv/:id"
+                element={
+                    <>
+                        <Header />
+                        <SeriesPage />
+                    </>
+                }
+            />
             <Route
                 path="/:media_type/:id/cast-and-crew/cast"
-                element={<CastAll />}
+                element={
+                    <>
+                        <Header />
+                        <CastAll />
+                    </>
+                }
             />
             <Route
                 path="/:media_type/:id/cast-and-crew/crew"
-                element={<CrewAll />}
+                element={
+                    <>
+                        <Header />
+                        <CrewAll />
+                    </>
+                }
             />
-            <Route path="/people/:id" element={<Person />} />
-            <Route path="/search/:value" element={<SearchResultsPage />} />
+            <Route
+                path="/people/:id"
+                element={
+                    <>
+                        <Header />
+                        <Person />
+                    </>
+                }
+            />
+            <Route
+                path="/search/:value"
+                element={
+                    <>
+                        <Header />
+                        <SearchResultsPage />
+                    </>
+                }
+            />
+            <Route
+                path="/explore-movies"
+                element={
+                    <>
+                        <Header />
+                        <ExploreMoviesPage />
+                    </>
+                }
+            />
         </Routes>
     </div>
 );

@@ -120,3 +120,16 @@ export const fetchTrendingPeople = async ({ queryKey }) => {
 
     return response.json();
 };
+
+export const fetchExploreMovies = async ({ queryKey }) => {
+    console.log(queryKey);
+    const response = await fetch(
+        `${url}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${queryKey[1].map(
+            (gen) => gen.id + '%2C%20'
+        )}`,
+
+        options
+    );
+
+    return response.json();
+};
