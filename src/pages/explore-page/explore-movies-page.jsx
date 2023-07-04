@@ -3,12 +3,17 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchExploreMovies, fetchGenresMovie } from '../../api';
 import { getClassNameFromGenre } from '../../utils';
+import { countries } from '../../utils/countries-list';
 
 const ExploreMoviesPage = () => {
-    const [starred, setStarred] = useState('');
     const [genreArr, setGenreArr] = useState([]);
     const [minRating, setMinRating] = useState(0);
     const [maxRating, setMaxRating] = useState(10);
+    const [year, setYear] = useState('');
+    const [releasedFrom, setReleasedFrom] = useState('');
+    const [releasedTo, setReleasedTo] = useState('');
+    const [country, setCountry] = useState('');
+    const [countryCode, setCountryCode] = useState('');
 
     const filterdGenre = genreArr.filter((gen) => gen.active === true);
     const { data: movieGenre } = useQuery({
@@ -16,13 +21,22 @@ const ExploreMoviesPage = () => {
         queryFn: fetchGenresMovie,
     });
 
+    console.log(country);
     const { data: movies } = useQuery({
-        queryKey: ['exploreMovies', filterdGenre],
+        queryKey: [
+            'exploreMovies',
+            filterdGenre,
+            minRating,
+            maxRating,
+            year,
+            releasedFrom,
+            releasedTo,
+            countryCode,
+        ],
         queryFn: fetchExploreMovies,
     });
 
     console.log(movies);
-
     const handleMinChange = (event) => {
         event.preventDefault();
         const value = parseFloat(event.target.value);
@@ -64,18 +78,9 @@ const ExploreMoviesPage = () => {
     return (
         <div className="flex flex-col items-start">
             <div>
-                <label htmlFor="starred" />
-                <input
-                    id="starred"
-                    value={starred}
-                    onChange={(e) => setStarred(e.target.value)}
-                />
-            </div>
-
-            <div>
                 <h3>Genres</h3>
                 <div className="w-1/4 flex flex-wrap justify-center align-middle ">
-                    {genreArr !== [] &&
+                    {genreArr &&
                         genreArr.map((gen) => {
                             return (
                                 <button
@@ -202,6 +207,102 @@ const ExploreMoviesPage = () => {
                     step={1}
                     onChange={handleMaxChange}
                 />
+            </div>
+            <div className="mt-10 flex">
+                <label className="mr-3" htmlFor="year">
+                    Release year:
+                </label>
+                <input
+                    className="text-neutral-700 rounded-lg"
+                    type="number"
+                    id="year"
+                    min="0"
+                    max="3000"
+                    onChange={(e) => setYear(e.target.value)}
+                />
+            </div>
+            <div className="mt-10 flex justify-between space-x-2">
+                <label htmlFor="released-from">Released from</label>
+
+                <input
+                    className="rounded-lg  text-neutral-700  focus:outline-violet-500"
+                    type="date"
+                    id="released-from"
+                    name="trip-start"
+                    value={releasedFrom}
+                    min="1930-01-01"
+                    max={releasedTo}
+                    onChange={(e) => {
+                        setReleasedFrom(e.target.value);
+                        setYear('');
+                    }}
+                ></input>
+
+                <label htmlFor="released-to">to</label>
+
+                <input
+                    className="rounded-lg  text-neutral-700  focus:outline-violet-500"
+                    type="date"
+                    id="released-to"
+                    name="trip-start"
+                    value={releasedTo}
+                    min={releasedFrom}
+                    max="2050-12-31"
+                    onChange={(e) => {
+                        setReleasedTo(e.target.value);
+                        setYear('');
+                    }}
+                ></input>
+            </div>
+            <div className=" flex flex-col w-1/4 mt-20">
+                <div>
+                    <label htmlFor="country">Country</label>
+
+                    <input
+                        className={`${
+                            country
+                                ? 'rounded-lg rounded-b-none'
+                                : 'rounded-lg '
+                        }  w-full text-neutral-700  focus:outline-none focus:ring focus:border-violet-500 `}
+                        type="text"
+                        id="released-to"
+                        name="trip-start"
+                        value={country}
+                        min={releasedFrom}
+                        max="2050-12-31"
+                        placeholder={countryCode ?? 'Enter country name'}
+                        onChange={(e) => {
+                            setCountry(e.target.value);
+                        }}
+                    />
+                </div>
+                <div
+                    className={`${
+                        country
+                            ? 'max-h-32 p-1  rounded-b-lg  bg-white text-neutral-700 w-full  overflow-y-scroll'
+                            : 'hidden'
+                    }`}
+                >
+                    <ul>
+                        {country &&
+                            countries.map(
+                                (coun) =>
+                                    coun.name
+                                        .toUpperCase()
+                                        .includes(country.toUpperCase()) && (
+                                        <li
+                                            onClick={() => {
+                                                setCountryCode(coun.code);
+                                                setCountry('');
+                                            }}
+                                            key={coun.code}
+                                        >
+                                            {coun.name}
+                                        </li>
+                                    )
+                            )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

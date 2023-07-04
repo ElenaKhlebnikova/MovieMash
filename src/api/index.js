@@ -122,11 +122,16 @@ export const fetchTrendingPeople = async ({ queryKey }) => {
 };
 
 export const fetchExploreMovies = async ({ queryKey }) => {
-    console.log(queryKey);
     const response = await fetch(
-        `${url}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${queryKey[1].map(
-            (gen) => gen.id + '%2C%20'
-        )}`,
+        `${url}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${
+            queryKey[1] &&
+            '&with_genres=' + queryKey[1].map((gen) => gen.id + '%2C%20')
+        }}${queryKey[2] && 'vote_average.gte=' + queryKey[2]}${
+            queryKey[3] && 'vote_average.lte=' + queryKey[3]
+        }${queryKey[4] && '&year=' + queryKey[4]}
+        ${queryKey[5] && '&release_date.gte=' + queryKey[5]}${
+            queryKey[6] && '&release_date.lte=' + queryKey[6]
+        }${queryKey[7] && '&with_origin_country=' + queryKey[7]}`,
 
         options
     );
