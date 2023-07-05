@@ -8,6 +8,7 @@ import CrewAll from './pages/cast-and-crew/crew-all';
 import { Routes, Route } from 'react-router-dom';
 import Header from './layout/header';
 import ExploreMoviesPage from './pages/explore-page/explore-movies-page';
+import ExploreTvPage from './pages/explore-page/explore-tv-page';
 
 const App = () => (
     <div>
@@ -74,6 +75,15 @@ const App = () => (
                     <>
                         <Header />
                         <ExploreMoviesPage />
+                    </>
+                }
+            />
+            <Route
+                path="/explore-tv"
+                element={
+                    <>
+                        <Header />
+                        <ExploreTvPage />
                     </>
                 }
             />

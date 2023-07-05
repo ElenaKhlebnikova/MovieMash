@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Filter from './components/filter';
 import MovieItem from '../../components/movie-item';
 import { useQuery } from '@tanstack/react-query';
-import { fetchExploreMovies, fetchGenresMovie } from '../../api';
+import { fetchExploreTv, fetchGenresSeries } from '../../api';
 
-const ExploreMovie = () => {
+const ExploreTvPage = () => {
     const [genreArr, setGenreArr] = useState([]);
     const [minRating, setMinRating] = useState(0);
     const [maxRating, setMaxRating] = useState(10);
@@ -16,14 +16,14 @@ const ExploreMovie = () => {
     const [sorting, setSorting] = useState('');
 
     const filterdGenre = genreArr.filter((gen) => gen.active === true);
-    const { data: movieGenre } = useQuery({
-        queryKey: ['genreMovie'],
-        queryFn: fetchGenresMovie,
+    const { data: tvGenre } = useQuery({
+        queryKey: ['genreTv'],
+        queryFn: fetchGenresSeries,
     });
 
-    const { data: movies } = useQuery({
+    const { data: tv } = useQuery({
         queryKey: [
-            'exploreMovies',
+            'exploreTv',
             filterdGenre,
             minRating,
             maxRating,
@@ -33,17 +33,15 @@ const ExploreMovie = () => {
             countryCode,
             sorting,
         ],
-        queryFn: fetchExploreMovies,
+        queryFn: fetchExploreTv,
     });
 
     useEffect(() => {
         let genre = [];
-        if (genre && movieGenre)
-            movieGenre.genres.map((gen) =>
-                genre.push({ ...gen, active: false })
-            );
+        if (genre && tvGenre)
+            tvGenre.genres.map((gen) => genre.push({ ...gen, active: false }));
         setGenreArr(genre);
-    }, [movieGenre]);
+    }, [tvGenre]);
 
     return (
         <div className="grid grid-cols-3 mx-10 ">
@@ -66,12 +64,12 @@ const ExploreMovie = () => {
                 }}
             />
             <div className="grid grid-cols-2 col-span-2 ">
-                {movies &&
-                    movies.results.map((movie) => (
+                {tv &&
+                    tv.results.map((movie) => (
                         <MovieItem
                             key={movie.id}
                             item={movie}
-                            media_type="movie"
+                            media_type="tv"
                             extended={true}
                         />
                     ))}
@@ -80,4 +78,4 @@ const ExploreMovie = () => {
     );
 };
 
-export default ExploreMovie;
+export default ExploreTvPage;

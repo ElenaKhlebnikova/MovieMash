@@ -41,7 +41,11 @@ const MovieItem = ({ item, media_type, extended }) => {
                         {extended && (
                             <p>
                                 📅
-                                <span>{formatDate(item.release_date)}</span>
+                                <span>
+                                    {formatDate(
+                                        item.release_date ?? item.first_air_date
+                                    )}
+                                </span>
                             </p>
                         )}
 
@@ -80,7 +84,8 @@ MovieItem.propTypes = {
         character: PropTypes.string,
         job: PropTypes.string,
         release_date: PropTypes.instanceOf(Date),
-    }).isRequired,
+        first_air_date: PropTypes.instanceOf(Date),
+    }),
     media_type: PropTypes.string,
     extended: PropTypes.bool,
 };

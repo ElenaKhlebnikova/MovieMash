@@ -4,7 +4,7 @@ const SortingSelector = ({ setSorting }) => {
     const options = [
         { name: 'Rating \u2191', value: 'vote_average.asc' },
         { name: 'Rating \u2193', value: 'vote_average.desc' },
-        { name: 'Release \u2191', value: 'primary_release_date.asс' },
+        { name: 'Release \u2191', value: 'primary_release_date.asc' },
         { name: 'Release \u2193', value: 'primary_release_date.desc' },
     ];
 

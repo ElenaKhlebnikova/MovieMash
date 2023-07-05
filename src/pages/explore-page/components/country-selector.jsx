@@ -8,10 +8,14 @@ const CountrySelector = ({
     setCountryCode,
 }) => {
     return (
-        <div>
+        <div className="w-56">
             <div className=" flex w-full  flex-col mt-16 mb-52">
-                <h3 className="text-left">Select country</h3>
-                <div className="min-w-full">
+                <div className="flex justify-between">
+                    <h3 className="text-left">Select country</h3>
+                    <button onClick={() => setCountry('')}>x</button>
+                </div>
+
+                <div className="min-w-full max-w-full">
                     <label className="text-left" htmlFor="country" />
                     <input
                         className={`${

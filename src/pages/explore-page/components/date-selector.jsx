@@ -44,7 +44,11 @@ const DateSelector = ({
                         id="year"
                         min="0"
                         max="3000"
-                        onChange={(e) => setYear(e.target.value)}
+                        onChange={(e) => {
+                            setYear(e.target.value);
+                            setReleasedFrom('');
+                            setReleasedTo('');
+                        }}
                     />
                 </div>
             )}
@@ -64,7 +68,7 @@ const DateSelector = ({
                             max={releasedTo}
                             onChange={(e) => {
                                 setReleasedFrom(e.target.value);
-                                setReleasedTo('');
+
                                 setYear('');
                             }}
                         />
@@ -81,7 +85,7 @@ const DateSelector = ({
                             max="2050-12-31"
                             onChange={(e) => {
                                 setReleasedTo(e.target.value);
-                                setReleasedFrom('');
+
                                 setYear('');
                             }}
                         />
