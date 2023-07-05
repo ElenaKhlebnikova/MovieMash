@@ -2,10 +2,10 @@ import Genres from './genres/genres';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './rating';
-import { getPicture } from '../utils';
+import { getPicture, formatDate } from '../utils';
 import Title from './title';
 
-const MovieItem = ({ item, media_type }) => {
+const MovieItem = ({ item, media_type, extended }) => {
     return (
         <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max flex flex-col flex-wrap">
             <Title title={item.name ?? item.title} />
@@ -38,6 +38,17 @@ const MovieItem = ({ item, media_type }) => {
                     />
 
                     <div>
+                        {extended && (
+                            <p>
+                                📅
+                                <span>
+                                    {formatDate(
+                                        item.release_date ?? item.first_air_date
+                                    )}
+                                </span>
+                            </p>
+                        )}
+
                         <Rating
                             number={item.vote_count}
                             rating={item.vote_average}
@@ -72,8 +83,11 @@ MovieItem.propTypes = {
         poster_path: PropTypes.string,
         character: PropTypes.string,
         job: PropTypes.string,
-    }).isRequired,
+        release_date: PropTypes.instanceOf(Date),
+        first_air_date: PropTypes.instanceOf(Date),
+    }),
     media_type: PropTypes.string,
+    extended: PropTypes.bool,
 };
 
 export default MovieItem;

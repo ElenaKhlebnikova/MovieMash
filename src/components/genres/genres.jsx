@@ -2,11 +2,8 @@ import PropTypes from 'prop-types';
 import Genre from './genre';
 import useGenres from '../../hooks/use-genres';
 
-const Genres = ({ data, media_type }) => {
-    const genres = useGenres(
-        data.genres ?? data.genre_ids,
-        media_type ?? data.media_type
-    );
+const Genres = ({ data }) => {
+    const genres = useGenres(data.genres ?? data.genre_ids);
 
     return (
         <div className="my-10 flex flex-col flex-wrap justify-center">
