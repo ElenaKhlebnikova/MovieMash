@@ -17,7 +17,7 @@ const Person = () => {
     return (
         <>
             <GoBackBtn />
-            <div className="m-5 lg:m-15 ">
+            <div className="m-5 lg:m-15 lg:px-24 ">
                 {data && (
                     <>
                         <BriefInfoPerson data={data} device={device} />

@@ -58,7 +58,7 @@ const ExploreMovie = () => {
                 />
             )}
 
-            <div className="grid grid-cols-3 mx-10 ">
+            <div className="grid xl:grid-cols-3 lg:grid-cols-2 mx-10 ">
                 <Filter
                     props={{
                         genreArr,
@@ -77,7 +77,7 @@ const ExploreMovie = () => {
                         setSorting,
                     }}
                 />
-                <div className="grid grid-cols-2 col-span-2 ">
+                <div className="grid xl:grid-cols-2 xl:col-span-2 ">
                     {movies &&
                         movies.results.map((movie) => (
                             <MovieItem

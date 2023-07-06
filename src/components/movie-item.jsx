@@ -18,9 +18,16 @@ const MovieItem = ({ item, media_type, extended }) => {
                                 : item.media_type
                         }/${item.id}`}
                     >
-                        <img
-                            className="h-52"
-                            src={getPicture(item.poster_path, 'movie')}
+                        <div
+                            className="flex m-10 h-60  w-40 bg-cover"
+                            style={{
+                                backgroundImage: `url(
+                                            ${getPicture(
+                                                item.poster_path,
+                                                'movie'
+                                            )}
+                                        )`,
+                            }}
                         />
                     </Link>
                 </div>

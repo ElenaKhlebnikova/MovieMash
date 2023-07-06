@@ -24,7 +24,7 @@ const AsCrew = ({ data, isLoading }) => {
     if (!data) return null;
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-24">
                 <div
                     className={`h-10 w-full ${
                         crewIsShown ? 'rounded-t-md' : 'rounded-md'
