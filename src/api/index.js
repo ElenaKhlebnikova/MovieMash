@@ -1,3 +1,5 @@
+import { getStringWithQueries } from './utils';
+
 const options = {
     method: 'GET',
     headers: {
@@ -122,20 +124,8 @@ export const fetchTrendingPeople = async ({ queryKey }) => {
 };
 
 export const fetchExploreMovies = async ({ queryKey }) => {
-    const genreStr = queryKey[1].map((gen) => gen.id + '%2C%20').join('');
-
     const response = await fetch(
-        `${url}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1${
-            genreStr && '&with_genres=' + genreStr
-        }${queryKey[2] && '&vote_average.gte=' + queryKey[2]}${
-            queryKey[3] &&
-            queryKey[3] !== 10 &&
-            '&vote_average.lte=' + queryKey[3]
-        }${queryKey[4] && '&primary_release_year=' + queryKey[4]}
-        ${queryKey[5] && '&primary_release_date.gte=' + queryKey[5]}${
-            queryKey[6] && '&primary_release_date.lte=' + queryKey[6]
-        }${queryKey[7] && '&with_origin_country=' + queryKey[7]}
-        ${queryKey[8] && '&sort_by=' + queryKey[8]}`,
+        getStringWithQueries('movie', queryKey),
 
         options
     );
@@ -144,19 +134,8 @@ export const fetchExploreMovies = async ({ queryKey }) => {
 };
 
 export const fetchExploreTv = async ({ queryKey }) => {
-    const genreStr = queryKey[1].map((gen) => gen.id + '%2C%20').join('');
-    console.log(queryKey);
-
     const response = await fetch(
-        `${url}/discover/tv?include_adult=false&include_video=false&language=en-US&page=1${
-            genreStr && '&with_genres=' + genreStr
-        }${queryKey[2] && '&vote_average.gte=' + queryKey[2]}${
-            queryKey[3] && '&vote_average.lte=' + queryKey[3]
-        }${queryKey[4] && '&primary_release_year=' + queryKey[4]}
-        ${queryKey[5] && '&primary_release_date.gte=' + queryKey[5]}${
-            queryKey[6] && '&primary_release_date.lte=' + queryKey[6]
-        }${queryKey[7] && '&with_origin_country=' + queryKey[7]}
-        ${queryKey[8] && '&sort_by=' + queryKey[8]}`,
+        getStringWithQueries('tv', queryKey),
 
         options
     );

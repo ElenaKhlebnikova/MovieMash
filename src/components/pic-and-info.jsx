@@ -5,7 +5,7 @@ import { getPicture } from '../utils';
 
 const PicAndInfo = ({ data, media_type }) => {
     return (
-        <div className="grid grid-cols-2 gap-5 mb-5 lg:col-start-1">
+        <div className="grid grid-cols-2 gap-5 mb-5  lg:col-start-1">
             <div className="self-end">
                 <img
                     className="lg:h-96"

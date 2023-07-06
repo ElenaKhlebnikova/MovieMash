@@ -8,10 +8,18 @@ const PersonPreview = ({ person }) => {
             className="grid grid-cols-2 mb-5 lg:mx-3  lg:justify-items-start"
             key={person.id}
         >
-            <div className="lg:justify-self-end lg:mr-5">
+            <div
+                className="lg:justify-self-end lg:mr-5 bg-no-repeat bg-contain w-36  mr-3 rounded-md"
+                style={{
+                    backgroundImage: `url(${getPicture(
+                        person.profile_path,
+                        'person'
+                    )})`,
+                }}
+            >
                 <Link to={`/people/${person.id}`}>
                     <img
-                        className="w-fit mr-3 rounded-md lg:h-44"
+                        className=""
                         src={getPicture(person.profile_path, 'person')}
                     />
                 </Link>

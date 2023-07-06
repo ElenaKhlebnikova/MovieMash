@@ -3,6 +3,7 @@ import Filter from './components/filter';
 import MovieItem from '../../components/movie-item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchExploreMovies, fetchGenresMovie } from '../../api';
+import Pagination from '../../components/pagination';
 
 const ExploreMovie = () => {
     const [genreArr, setGenreArr] = useState([]);
@@ -14,6 +15,7 @@ const ExploreMovie = () => {
     const [country, setCountry] = useState('');
     const [countryCode, setCountryCode] = useState('');
     const [sorting, setSorting] = useState('');
+    const [page, setPage] = useState(1);
 
     const filterdGenre = genreArr.filter((gen) => gen.active === true);
     const { data: movieGenre } = useQuery({
@@ -32,6 +34,7 @@ const ExploreMovie = () => {
             releasedTo,
             countryCode,
             sorting,
+            page,
         ],
         queryFn: fetchExploreMovies,
     });
@@ -46,37 +49,47 @@ const ExploreMovie = () => {
     }, [movieGenre]);
 
     return (
-        <div className="grid grid-cols-3 mx-10 ">
-            <Filter
-                props={{
-                    genreArr,
-                    minRating,
-                    maxRating,
-                    setGenreArr,
-                    setMinRating,
-                    setMaxRating,
-                    setYear,
-                    setReleasedTo,
-                    setReleasedFrom,
-                    country,
-                    setCountry,
-                    countryCode,
-                    setCountryCode,
-                    setSorting,
-                }}
-            />
-            <div className="grid grid-cols-2 col-span-2 ">
-                {movies &&
-                    movies.results.map((movie) => (
-                        <MovieItem
-                            key={movie.id}
-                            item={movie}
-                            media_type="movie"
-                            extended={true}
-                        />
-                    ))}
+        <>
+            {movies && (
+                <Pagination
+                    total_pages={movies.total_pages}
+                    page={page}
+                    setPage={setPage}
+                />
+            )}
+
+            <div className="grid xl:grid-cols-3 lg:grid-cols-2 mx-10 ">
+                <Filter
+                    props={{
+                        genreArr,
+                        minRating,
+                        maxRating,
+                        setGenreArr,
+                        setMinRating,
+                        setMaxRating,
+                        setYear,
+                        setReleasedTo,
+                        setReleasedFrom,
+                        country,
+                        setCountry,
+                        countryCode,
+                        setCountryCode,
+                        setSorting,
+                    }}
+                />
+                <div className="grid xl:grid-cols-2 xl:col-span-2 ">
+                    {movies &&
+                        movies.results.map((movie) => (
+                            <MovieItem
+                                key={movie.id}
+                                item={movie}
+                                media_type="movie"
+                                extended={true}
+                            />
+                        ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

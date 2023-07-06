@@ -3,15 +3,18 @@ import { formatDate, getPicture } from '../../../../utils';
 
 const BriefInfoPerson = ({ data, device }) => {
     return (
-        <div>
+        <div className="mb-20">
             <h3 className="mb-5 font-semibold text-xl">{data.name}</h3>
             <div className="grid grid-cols-2 lg:grid-cols-5 ">
-                <div className="lg:mx-5">
-                    <img
-                        className="lg:h-56 lg:justify-self-end "
-                        src={getPicture(data.profile_path, 'person')}
-                    />
-                </div>
+                <div
+                    className="lg:justify-self-end lg:mr-5 bg-no-repeat bg-contain w-36  mr-3 rounded-md"
+                    style={{
+                        backgroundImage: `url(${getPicture(
+                            data.profile_path,
+                            'person'
+                        )})`,
+                    }}
+                ></div>
                 <div className="lg:flex ">
                     <div className="lg:mx-5">
                         <ul className="text-start ml-5">

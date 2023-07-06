@@ -8,7 +8,7 @@ import {
     fetchTrendingPeople,
 } from '../../api';
 import Header from '../../layout/header';
-import Trending from './components/trending-movies';
+import Trending from './components/trending';
 import Switch from './components/switch';
 import { useState } from 'react';
 import SwitchMoviesSeriesPeople from './components/switch-movies-series-people';

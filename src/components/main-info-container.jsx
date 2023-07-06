@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 
 const MainInfoContainer = ({ data, media_type }) => {
     return (
-        <div>
+        <div className="mr-10">
             <PicAndInfo data={data} media_type={media_type} />
             <Overview data={data} />
             <Popularity data={data} />

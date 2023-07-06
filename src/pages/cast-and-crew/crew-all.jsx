@@ -5,9 +5,10 @@ import GoBackBtn from '../../components/go-back-btn';
 
 const CrewAll = () => {
     const { id, media_type } = useParams();
+
     const data = useFetchCastCrewMovieOrTv(id, media_type);
 
-    if (data) return null;
+    if (!data) return null;
 
     return (
         <div>
