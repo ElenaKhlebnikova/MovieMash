@@ -142,3 +142,40 @@ export const fetchExploreTv = async ({ queryKey }) => {
 
     return response.json();
 };
+
+export const createRequestToken = async () => {
+    const response = fetch(
+        'https://api.themoviedb.org/3/authentication/token/new',
+        options
+    )
+        .then((res) => res.json())
+        .then((resp) => {
+            window.location.replace(
+                `https://www.themoviedb.org/authenticate/${resp.request_token}?redirect_to=http://localhost:5173/log-in`
+            );
+        });
+
+    createSessionId(response.request_token);
+};
+
+export const createSessionId = async (REQUEST_TOKEN) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: import.meta.env.VITE_TOKEN,
+        },
+        body: JSON.stringify({
+            request_token: REQUEST_TOKEN,
+        }),
+    };
+
+    const response = await fetch(
+        'https://api.themoviedb.org/3/authentication/session/new',
+        options
+    );
+
+    console.log(response);
+    return response.json();
+};
