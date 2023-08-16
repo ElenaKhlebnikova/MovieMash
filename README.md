@@ -2,7 +2,7 @@
 
 Welcome to MovieMash repository! This is a web-application which allows users to view different movies, tv-shows and people working in the industry. 
 
-The project is connected to [The Movie Database]([https://developer.themoviedb.org])
+The project is connected to [The Movie Database](https://developer.themoviedb.org)
 
 ## 🏗️ Tech Stack
 
@@ -22,7 +22,7 @@ useQuery| To fetch data
 
 ## 👀 Project Overview
 
-Click  [here]([https://startling-travesseiro-2774de.netlify.app/]) to view the project.
+Click  [here](https://startling-travesseiro-2774de.netlify.app/) to view the project.
 
 
 ![MovieMash main](https://i.ibb.co/SdXHdr6/image.png)
@@ -58,9 +58,10 @@ Click  [here]([https://startling-travesseiro-2774de.netlify.app/]) to view the p
 5. How to use RTL to write integration tests that span multiple components.
 6. How to use Tailwind to build responsive UI much faster.
 7. Improved CSS skills.
+8. How to work with branches and small PRs.
 
 ## 😭 What I struggled with
-1. Although the biggest part of the project is built using Tailwind, custom CSS was still required to animate slider component and build [rating range]([https://i.ibb.co/W6bTXGW/image.png]) component when exploring movies or TV shows
+1. Although the biggest part of the project is built using Tailwind, custom CSS was still required to animate slider component and build [rating range](https://i.ibb.co/W6bTXGW/image.png) component when exploring movies or TV shows
 2. Using `useQuery` for te first time, because the documentation was confusing at first.
 3. Building complicated filtering functionality for "Explore Movies" and "Explore TV shows" pages.
 
