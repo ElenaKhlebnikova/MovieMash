@@ -2,6 +2,7 @@
 
 Welcome to MovieMash repository! This is a web-application which allows users to view different movies, tv-shows, see their rating, production, cast, crew and popularity. 
 It also allows users to view actors and producers'  biography, filmography and their popularity.
+Here is the [preview link](https://startling-travesseiro-2774de.netlify.app/).
 
 The project is using [The Movie Database](https://developer.themoviedb.org) API.
 
