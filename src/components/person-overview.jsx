@@ -108,9 +108,7 @@ const PersonOverview = ({ dataAll, dataFirstFive }) => {
                             .scrollIntoView();
                     }}
                 >
-
                     {more ? 'Hide more' : 'Show more'}
-
                 </button>
             </div>
         </div>

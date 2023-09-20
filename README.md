@@ -1,7 +1,7 @@
 # 🍿MovieMash
 
-Welcome to MovieMash repository! This is a web-application which allows users to view different movies, tv-shows, see their rating, production, cast, crew and popularity. 
-It also allows users to view actors and producers'  biography, filmography and their popularity.
+Welcome to MovieMash repository! This is a web-application which allows users to view different movies, tv-shows, see their rating, production, cast, crew and popularity.
+It also allows users to view actors and producers' biography, filmography and their popularity.
 
 Here is the [preview link](https://startling-travesseiro-2774de.netlify.app/).
 
@@ -11,24 +11,21 @@ The project is using [The Movie Database](https://developer.themoviedb.org) API.
 
 MovieMash is built with the following tech stack:
 
-| Technology                                                          | Usage                                                                                                          |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| React                                     | Main framework for building the application         |
-| React Router                                    |Navigation and routing within the application |
-| React Query| To handle data fetching and caching
-| Taiwind                         | CSS framework for building UI                                   |
-| GitHub Actions | To test and deploy the application (2 separate workflows)
-| ESLint/Prettier/Husky                                 | For linting/formatting/Git-hooks                                      |
-| Jest & RTL                                  | To write unit and integration tests  |    
-| Mock Service Worker                              | To mock requests during testing  |   
-| Vite | Development environment (local dev server and building)
-
-                                                                                    
+| Technology            | Usage                                                     |
+| --------------------- | --------------------------------------------------------- |
+| React                 | Main framework for building the application               |
+| React Router          | Navigation and routing within the application             |
+| React Query           | To handle data fetching and caching                       |
+| Taiwind               | CSS framework for building UI                             |
+| GitHub Actions        | To test and deploy the application (2 separate workflows) |
+| ESLint/Prettier/Husky | For linting/formatting/Git-hooks                          |
+| Jest & RTL            | To write unit and integration tests                       |
+| Mock Service Worker   | To mock requests during testing                           |
+| Vite                  | Development environment (local dev server and building)   |
 
 ## 👀 Project Overview
 
-Click  [here](https://startling-travesseiro-2774de.netlify.app/) to view the project.
-
+Click [here](https://startling-travesseiro-2774de.netlify.app/) to view the project.
 
 ![MovieMash main](https://i.ibb.co/SdXHdr6/image.png)
 
@@ -39,10 +36,7 @@ Click  [here](https://startling-travesseiro-2774de.netlify.app/) to view the pro
 ![MovieMash person page](https://i.ibb.co/Q9wKxP9/image.png)
 ![MovieMash responsive slider](https://i.ibb.co/X44Mnpz/image.png)
 
-
-
-
-## 🎥 Features 
+## 🎥 Features
 
 1. Fully responsive.
 2. Filtering: users can filter TV shows and movies based on genres, rating and country.
@@ -53,9 +47,8 @@ Click  [here](https://startling-travesseiro-2774de.netlify.app/) to view the pro
 7. Slider for trending/similar movies/TV shows is fully responsive.
 8. Users can search for movies/TV shows on the main page.
 
-
-
 ## 📖What I have learnt
+
 1. Using React Router v6.11 to implement navigation between different pages.
 2. Using React Query to fetch data using multiple queries.
 3. Using The Movie Database which requires token authentication.
@@ -67,13 +60,7 @@ Click  [here](https://startling-travesseiro-2774de.netlify.app/) to view the pro
 9. How to work with env variables locally (.env files) and on deployment platform (Netlify).
 
 ## 😭 What I struggled with
+
 1. Using React Query for the first time mainly because their documentation was confusing at first.
 2. Building complicated filtering functionality for "Explore Movies" and "Explore TV shows" pages.
 3. Although the biggest part of the project is built using Tailwind, custom CSS was still required to animate the slider component and build [rating range](https://i.ibb.co/W6bTXGW/image.png) component when exploring movies or TV shows.
-
-
-
-
-
-
-
