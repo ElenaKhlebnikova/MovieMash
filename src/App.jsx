@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './layout/header';
 import ExploreMoviesPage from './pages/explore-page/explore-movies-page';
 import ExploreTvPage from './pages/explore-page/explore-tv-page';
+import LogIn from './pages/auth/log-in/log-in';
 
 const App = () => (
     <div>
@@ -84,6 +85,15 @@ const App = () => (
                     <>
                         <Header />
                         <ExploreTvPage />
+                    </>
+                }
+            />
+            <Route
+                path="/log-in"
+                element={
+                    <>
+                        <Header />
+                        <LogIn />
                     </>
                 }
             />

@@ -18,6 +18,12 @@ const Header = () => {
                         Explore TV shows
                     </li>
                 </Link>
+
+                <Link to={'/log-in'}>
+                    <li className="mx-2 text-base font-semibold hover:cursor-pointer hover:text-slate-300 transition-all">
+                        Log in
+                    </li>
+                </Link>
             </ul>
         </nav>
     );
