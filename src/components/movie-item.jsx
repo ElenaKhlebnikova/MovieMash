@@ -7,9 +7,9 @@ import Title from './title';
 
 const MovieItem = ({ item, media_type, extended }) => {
     return (
-        <div className=" border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max flex flex-col flex-wrap">
+        <div className="border-violet-200 border-t-2 my-5  lg:mx-10 lg:min-w-max flex flex-col flex-wrap">
             <Title title={item.name ?? item.title} />
-            <div className="grid grid-cols-2 lg:flex lg:justify-start">
+            <div className="grid justify-items-center lg:grid-cols-2 lg:flex lg:justify-start">
                 <div className="lg:mb-10 lg:mr-10">
                     <Link
                         to={`/${
@@ -19,7 +19,7 @@ const MovieItem = ({ item, media_type, extended }) => {
                         }/${item.id}`}
                     >
                         <div
-                            className="flex m-10 h-60  w-40 bg-cover"
+                            className="flex m-10 h-60 w-40 bg-cover"
                             style={{
                                 backgroundImage: `url(
                                             ${getPicture(

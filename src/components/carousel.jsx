@@ -23,6 +23,6 @@ const Carousel = ({ data, media_type }) => {
 
 Carousel.propTypes = {
     data: propTypes.object.isRequired,
-    media_type: propTypes.string.isRequired,
+    media_type: propTypes.string,
 };
 export default Carousel;
