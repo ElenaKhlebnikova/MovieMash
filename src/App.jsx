@@ -10,6 +10,7 @@ import Header from './layout/header';
 import ExploreMoviesPage from './pages/explore-page/explore-movies-page';
 import ExploreTvPage from './pages/explore-page/explore-tv-page';
 import LogIn from './pages/auth/log-in/log-in';
+import Approved from './pages/auth/log-in/approved/approved';
 
 const App = () => (
     <div>
@@ -94,6 +95,15 @@ const App = () => (
                     <>
                         <Header />
                         <LogIn />
+                    </>
+                }
+            />
+            <Route
+                path="/approved"
+                element={
+                    <>
+                        <Header />
+                        <Approved />
                     </>
                 }
             />
