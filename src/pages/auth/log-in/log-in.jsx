@@ -1,23 +1,11 @@
-import { createRequestToken, createSessionId } from '../../../api';
-
-import { useEffect } from 'react';
+import { createRequestToken } from '../../../api';
 
 const LogIn = () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const request_token = queryParams.get('request_token');
-    useEffect(() => {
-        if (request_token) {
-            const res = createSessionId(request_token);
-            console.log(res);
-        }
-    }, [request_token]);
-
     const handleLogIn = (e) => {
         e.preventDefault();
         createRequestToken();
     };
 
-    // This method is to create your own
     return (
         <div>
             <form>

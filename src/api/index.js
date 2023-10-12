@@ -9,6 +9,7 @@ const options = {
 };
 
 const url = import.meta.env.VITE_URL;
+const ACCOUNT_ID = import.meta.env.ACCOUNT_ID;
 
 export const fetchMulti = async (value) => {
     const response = await fetch(
@@ -144,18 +145,13 @@ export const fetchExploreTv = async ({ queryKey }) => {
 };
 
 export const createRequestToken = async () => {
-    const response = fetch(
-        'https://api.themoviedb.org/3/authentication/token/new',
-        options
-    )
+    fetch('https://api.themoviedb.org/3/authentication/token/new', options)
         .then((res) => res.json())
         .then((resp) => {
             window.location.replace(
-                `https://www.themoviedb.org/authenticate/${resp.request_token}?redirect_to=http://localhost:5173/log-in`
+                `https://www.themoviedb.org/authenticate/${resp.request_token}?redirect_to=http://localhost:5173/approved`
             );
         });
-
-    createSessionId(response.request_token);
 };
 
 export const createSessionId = async (REQUEST_TOKEN) => {
@@ -175,7 +171,18 @@ export const createSessionId = async (REQUEST_TOKEN) => {
         'https://api.themoviedb.org/3/authentication/session/new',
         options
     );
+    const res = await response.json();
+    if (res.success === true) {
+        document.cookie = `session_id=${res.session_id}`;
+    }
+};
 
-    console.log(response);
-    return response.json();
+export const getUserInformation = async (SESSION_ID) => {
+    if (SESSION_ID.queryKey[0] !== '') {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/account/${ACCOUNT_ID}?${SESSION_ID.queryKey[0]}`,
+            options
+        );
+        return response.json();
+    } else return 'NOT_AUTH';
 };
